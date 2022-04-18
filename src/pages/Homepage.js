@@ -19,7 +19,6 @@ function Homepage() {
   }, []);
 
   async function getData() {
-   
     try {
       setLoading(true);
       const users = await getDocs(collection(fireDB, "products"));
@@ -49,6 +48,16 @@ function Homepage() {
     <Layout loading={loading}>
       {/* view ra ngoai */}
       <div className="container">
+      {/* Sap xep */}
+        <div className="d-flex">
+          <input type="text" className="form-control" placeholder="search items" />
+          <select name="" id="" className="form-control">
+            <option value=""> ALL</option>
+            <option value="">Electronics</option>
+            <option value="">Mobiles</option>
+            <option value="">Fashion</option>
+          </select>
+        </div>
         <div className="row">
           {products.map((product) => {
             return (
