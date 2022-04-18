@@ -10,6 +10,8 @@ function Homepage() {
   //useSelector : selector co the dung nhiu noi, nhiu component khac nhau
   const { cartItems } = useSelector((state) => state.cartReducer);
   const [loading, setLoading] = useState(false);
+  const [searchKey, setSearchKey] = useState("");
+  const [filterType, setFilterType] = useState("");
   // dispath di duoc action len redux-store
   const dispatch = useDispatch();
   //  dung` useNavigate dieu huong trang
@@ -48,54 +50,72 @@ function Homepage() {
     <Layout loading={loading}>
       {/* view ra ngoai */}
       <div className="container">
-      {/* Sap xep */}
-        <div className="d-flex">
-          <input type="text" className="form-control" placeholder="search items" />
-          <select name="" id="" className="form-control">
+        {/* Sap xep */}
+        <div className="d-flex w-50 align-items-center my-3 justify-content-center">
+          <input
+            type="text"
+            value={searchKey}
+            onChange={(e) => {
+              setSearchKey(e.target.value);
+            }}
+            className="form-control mx-2"
+            placeholder="search items"
+          />
+          <select
+            className="form-control mt-3"
+            value={filterType}
+            onChange={(e) => {
+              setFilterType(e.target.value);
+            }}
+          >
             <option value=""> ALL</option>
-            <option value="">Electronics</option>
-            <option value="">Mobiles</option>
-            <option value="">Fashion</option>
+            <option value="book">Electronics</option>
+            <option value="kinhdi">kinh di</option>
+            <option value="hai">hai</option>
           </select>
         </div>
         <div className="row">
-          {products.map((product) => {
-            return (
-              <div className="col-md-4">
-                <div className="m-2 p-1 product position-relative">
-                  <div className="product-content">
-                    <p>{product.name}</p>
-                    <div className="text-center">
-                      <img
-                        src={product.imageURL}
-                        alt=""
-                        className="product-img"
-                      />
+          {/* Sap xep */}
+          {products
+            .filter((obj) => obj.name.toLowerCase().includes(searchKey))
+            .filter((obj) => obj.category.toLowerCase().includes(filterType))
+            .map((product) => {
+              return (
+                <div className="col-md-4">
+                  <div className="m-2 p-1 product position-relative">
+                    <div className="product-content">
+                      <p>{product.name}</p>
+                      <div className="text-center">
+                        <img
+                          src={product.imageURL}
+                          alt=""
+                          className="product-img"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="product-actions">
-                    <h2>{product.price} $</h2>
-                    <div className="d-flex">
-                      <button
-                        className="mx-2"
-                        onClick={() => addToCart(product)}
-                      >
-                        ADD TO CART
-                      </button>
-                      <button
-                        onClick={() => {
-                          // chuyen toi trong Productinfo
-                          navigate(`/productinfo/${product.id}`);
-                        }}
-                      >
-                        ViEW
-                      </button>
+                    <div className="product-actions">
+                      <h2>{product.price} $</h2>
+                      <div className="d-flex">
+                        <button
+                          className="mx-2"
+                          onClick={() => addToCart(product)}
+                        >
+                          ADD TO CART
+                        </button>
+                        <button
+                          onClick={() => {
+                            // chuyen toi trong Productinfo
+                            navigate(`/productinfo/${product.id}`);
+                          }}
+                        >
+                          ViEW
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
     </Layout>
