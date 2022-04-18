@@ -56,3 +56,10 @@ a{
 input,select {
   height: 35px !important;
 }
+#uncontrolled-tab-example-tab-products{
+  color: black !important;
+
+}
+.nav-item button{
+  color: black !important;
+}
