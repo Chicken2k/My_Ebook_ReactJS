@@ -10,6 +10,7 @@ import OrdersPage from "./pages/OrdersPage";
 import './stylesheet/layout.css';
 import './stylesheet/products.css';
 import './stylesheet/authentication.css';
+import './stylesheet/header.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminPage from "./pages/AdminPage";

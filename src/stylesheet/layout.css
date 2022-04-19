@@ -6,14 +6,14 @@
   z-index: 2;
 }
 .navbar{
-  background-color: #003F5C !important;
+  background-color: #003F5C ;
 }
 .navbar-brand{
-  color: white !important;
+  color: white ;
   font-weight: bold;
 }
 .nav-link{
-  color: #fff !important;
+  color: #fff ;
 }
 .content{
   padding-top: 80px;
@@ -36,6 +36,15 @@ button{
   padding: 5px;
  
 }
+.button--red{
+  color: #fff;
+  background-color: #ec5252;
+  border: 1px solid #ec5252;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 11px 12px;
+  cursor: pointer;
+}
 button:hover{
   background-color: tomato;
 }
@@ -54,12 +63,15 @@ a{
   text-decoration: none;
 }
 input,select {
-  height: 35px !important;
+  height: 35px ;
 }
 #uncontrolled-tab-example-tab-products{
-  color: black !important;
+  color: black ;
 
 }
 .nav-item button{
-  color: black !important;
+  color: black ;
+}
+.nav-tabs{
+  background-color: cadetblue;
 }

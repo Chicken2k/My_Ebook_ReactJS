@@ -120,7 +120,7 @@ function AdminPage() {
   return (
     <Layout loading={loading}>
       <Tabs
-        defaultActiveKey="profile"
+        defaultActiveKey="products"
         id="uncontrolled-tab-example"
         className="mb-3"
       >
@@ -211,6 +211,15 @@ function AdminPage() {
                     setProduct({ ...product, category: e.target.value })
                   }
                 />
+                <input
+                  type="text"
+                  value={product.description}
+                  className="form-control"
+                  placeholder="description"
+                  onChange={(e) =>
+                    setProduct({ ...product, description: e.target.value })
+                  }
+                />
                 <hr />
               </div>
             </Modal.Body>
@@ -225,7 +234,9 @@ function AdminPage() {
           </Modal>
         </Tab>
         <Tab eventKey="orders" title="Orders">
+       
           {orders.map((order) => {
+            
             return (
               <table className="table mt-3 order">
                 <thead>
@@ -233,10 +244,14 @@ function AdminPage() {
                     <th>Image</th>
                     <th>Name</th>
                     <th>Price</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Địa chỉ</th>
                   </tr>
                 </thead>
                 <tbody>
                   {order.cartItems.map((item) => {
+                    console.log(orders.cartItems);
                     return (
                       <tr>
                         <td>
@@ -244,15 +259,19 @@ function AdminPage() {
                         </td>
                         <td>{item.name}</td>
                         <td>{item.price}</td>
+                        <td>{item.address}</td>
+                        
                       </tr>
                     );
                   })}
+                 
+                  
                 </tbody>
               </table>
             );
           })}
         </Tab>
-        <Tab eventKey="contact" title="Contact" disabled></Tab>
+        <Tab eventKey="contact" title="Users" disabled></Tab>
       </Tabs>
     </Layout>
   );

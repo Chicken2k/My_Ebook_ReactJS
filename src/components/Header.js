@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaCartPlus } from "react-icons/fa";
+import { FaBars, FaCartPlus, FaUser } from "react-icons/fa";
 import { useSelector } from "react-redux";
 function Header() {
   const { cartItems } = useSelector((state) => state.cartReducer);
@@ -13,7 +13,7 @@ function Header() {
     <div className="header">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <Link className=" navbar-brand" to="/">
             MyEbook
           </Link>
           <button
@@ -31,26 +31,38 @@ function Header() {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/">
-                  {user.email.substring(0, user.email.length - 10)}
+              <li className=" text-navbar nav-item">
+                <Link className=" nav-link active" aria-current="page" to="/">
+                <FaUser/> {user.email.substring(0, user.email.length - 10)}
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className=" text-navbar nav-item">
                 <Link className="nav-link" to="/orders">
-                  Orders
+                  Đơn Hàng
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/" onClick={logout}>
-                  Logout
+              <li className=" text-navbar nav-item">
+                <Link className="nav-link" to="/">
+                  Liên Hệ
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className=" text-navbar nav-item">
+                <Link className="nav-link" to="/">
+                 Đọc Sách
+                </Link>
+              </li>
+              <li className=" text-navbar nav-item">
                 <Link className="nav-link" to="/cart">
                   <FaCartPlus /> {cartItems.length}
                 </Link>
               </li>
+              <li className=" text-navbar nav-item">
+                <Link className="nav-link" to="/" onClick={logout}>
+                <button className="button--red">Đăng Xuất</button>
+                </Link>
+              </li>
+             
+            
             </ul>
           </div>
         </div>

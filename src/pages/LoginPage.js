@@ -48,7 +48,7 @@ function LoginPage() {
                 }}
               />
               <input
-                type="text"
+                type="password"
                 className="form-control"
                 placeholder="password"
                 value={password}
@@ -57,7 +57,7 @@ function LoginPage() {
                 }}
               />
 
-              <button className="my-3" onClick={login}>Đăng nhập</button>
+              <button className="login_btn my-3" onClick={login}>Đăng nhập</button>
               <hr />
               <Link to="/register" >Đăng ký tại đây</Link>
             </div>

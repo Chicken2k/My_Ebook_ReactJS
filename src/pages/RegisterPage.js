@@ -20,6 +20,9 @@ function RegisterPage() {
       console.log(result);
       setLoading(false);
       toast.success("Đăng ký thành công");
+      setEmail('')
+      setPassword('')
+      setCPassword('')
     } catch (error) {
       console.log(error);
       toast.error("Đăng ký thất bại");
@@ -55,7 +58,7 @@ function RegisterPage() {
                 }}
               />
               <input
-                type="text"
+                type="password"
                 className="form-control"
                 placeholder="password"
                 value={password}
@@ -72,7 +75,7 @@ function RegisterPage() {
                   setCPassword(e.target.value);
                 }}
               />
-              <button className="my-3" onClick={register}>
+              <button className="register_btn my-3" onClick={register}>
                 REGISTER
               </button>
               <hr />
