@@ -1,0 +1,46 @@
+.card_products_img img{
+  height: 400px;
+  width: 400px;
+}
+.textProducts {
+
+
+  color: black;
+  font-size: 45px;
+  font-weight: 700;
+}
+.Productinfo_price {
+  background-color: #fafafa;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 20px;
+}
+.Productinfo_price p{
+  color: #ec5252;
+  font-weight: 500;
+  line-height: 36px;
+  font-size: 30px;
+  
+}
+
+.card_products_name .iStar{
+  color: #F4C150;
+  font-size: 20px;
+  font-weight: 900;
+}
+.card_products .button--red{
+  margin-top: 20px;
+}
+.textLMD {
+  color: black;
+  font-size: 35px;
+  font-weight: 700;
+  box-shadow: rgba(240, 46, 120, 0.4) 0px 5px, rgba(231, 44, 131, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+
+}
+.textDT{
+  color: black;
+  margin-top: 50px;
+  font-size: 20px;
+}

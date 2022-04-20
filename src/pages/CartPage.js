@@ -24,11 +24,19 @@ function CartPage() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    let temp = 0;
-    cartItems.forEach((cartItems) => {
-      temp = temp + cartItems.price;
-    });
+    // let temp = 0;
+    // cartItems.forEach((cartItems) => {
+    //   temp = temp + cartItems.price;
+    // });
+    var i=0;
+    function coinHandler(accmulator,currentValue){
+      i++;
+      return accmulator+parseInt(currentValue.price);
+      
+    }
+    let temp=cartItems.reduce(coinHandler,0);
     setTotalAmount(temp);
+    console.log(cartItems)
   }, [cartItems]);
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));

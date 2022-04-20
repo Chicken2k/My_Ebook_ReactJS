@@ -7,10 +7,12 @@ import CartPage from "./pages/CartPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import OrdersPage from "./pages/OrdersPage";
+import './stylesheet/productinfo.css'
 import './stylesheet/layout.css';
 import './stylesheet/products.css';
 import './stylesheet/authentication.css';
 import './stylesheet/header.css'
+import './stylesheet/cart.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminPage from "./pages/AdminPage";

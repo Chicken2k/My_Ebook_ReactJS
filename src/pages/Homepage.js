@@ -10,6 +10,8 @@ import googlebtn from "../img/google_btn.png";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaStar, FaStarHalf } from "react-icons/fa";
 function Homepage() {
   const [products, setProducts] = useState([]);
   //useSelector : selector co the dung nhiu noi, nhiu component khac nhau
@@ -51,10 +53,12 @@ function Homepage() {
   const addToCart = (product) => {
     dispatch({ type: "ADD_TO_CART", payload: product });
   };
+  
+
   return (
     <Layout loading={loading}>
-     {/* COVER */}
-     <div className="cover">
+      {/* COVER */}
+      <div className="cover">
         <div className="cover__content">
           <h1>Đọc sách Online</h1>
           <p>
@@ -134,10 +138,9 @@ function Homepage() {
             .filter((obj) => obj.category.toLowerCase().includes(filterType))
             .map((product) => {
               return (
-                <div className="col-md-4">
+                <div className="cart col-md-4">
                   <div className="m-2 p-1 product position-relative">
                     <div className="product-content">
-                      <p className="productNameBook">{product.name}</p>
                       <div className="text-center">
                         <img
                           src={product.imageURL}
@@ -145,6 +148,19 @@ function Homepage() {
                           className="product-img"
                         />
                       </div>
+                      <p className="productNameBook">{product.name}</p>
+                      <div className="card__stars">
+                        <span className="iStar">
+                          <FaStar />
+                          <FaStar />
+                          <FaStar />
+                          <FaStar />
+                          <FaStarHalf />
+                        </span>
+                        <span className="card__rate">4.6</span>
+                        <span className="card__total">(11.597)</span>
+                      </div>
+                      <h4>{product.price} $</h4>
                     </div>
                     <div className="product-actions">
                       <h2>{product.price} $</h2>
@@ -155,7 +171,8 @@ function Homepage() {
                         >
                           ADD TO CART
                         </button>
-                        <button className="button--red"
+                        <button
+                          className="button--red"
                           onClick={() => {
                             // chuyen toi trong Productinfo
                             navigate(`/productinfo/${product.id}`);
@@ -187,7 +204,7 @@ function Homepage() {
           </div>
         </div>
       </div>
-      <OwlCarousel className="owl-theme" loop margin={10} nav>
+      {/* <OwlCarousel className="owl-theme" loop margin={10} nav>
       <div className="students">
         <div className="students__content">
             <h2>What our students have to say</h2>
@@ -350,7 +367,7 @@ function Homepage() {
             </div>
         </div>
     </div>
-      </OwlCarousel>
+      </OwlCarousel> */}
       ;
     </Layout>
   );

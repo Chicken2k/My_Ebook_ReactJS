@@ -4,10 +4,11 @@ import { getDoc, doc } from "firebase/firestore";
 import fireDB from "../fireConfig";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { FaStar, FaStarHalf } from "react-icons/fa";
 function ProductInfo() {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
-  const dispatch =useDispatch();
+  const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cartReducer);
   // useParams dung de lay thong tin
   const params = useParams();
@@ -16,16 +17,16 @@ function ProductInfo() {
   }, []);
   async function getData() {
     try {
-      setLoading(true)
+      setLoading(true);
       const productTemp = await getDoc(
         doc(fireDB, "products", params.productid)
       );
       //productTemp.data() hien thi san pham view
       setProduct(productTemp.data());
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
       console.log(error);
-      setLoading(false)
+      setLoading(false);
     }
   }
   const addToCart = (product) => {
@@ -37,23 +38,47 @@ function ProductInfo() {
   return (
     <Layout loading={loading}>
       <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-md-8">
+        <div className="row card_products justify-content-center">
+          <div className="col-4 ">
             {product && (
-              <div className="card_products">
-                <p>
-                  <b className="textProducts">{product.name}</b>
-                </p>
+              <div className="card_products_img">
                 <img src={product.imageURL} className="product-info-img" />
-                <hr />
-                <p className="textLMD">Lời mở đầu</p>
-                <p className="textDT">{product.description}</p>
-                <div className="d-flex justify-content-end my-3">
-                  <button className="button--red" onClick={()=>addToCart(product)}>ADD TO CART</button>
-                </div>
               </div>
             )}
           </div>
+          <div className="card_products_name col-8">
+            <p>
+              <b className="textProducts">{product.name}</b>
+            </p>
+            <div className="Productinfo_price">
+              <p>đ{product.price}</p>
+            </div>
+            
+            <span className="iStar">
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStarHalf />
+            </span>
+            <span className="card__rate">4.6</span>
+            <span className="card__total">(11.597 Đánh giá)</span>
+            <p>
+              {" "}
+              <button
+                className="button--red"
+                onClick={() => addToCart(product)}
+              >
+                ADD TO CART
+              </button>
+            </p>
+          </div>
+        </div>
+        <div>
+          <hr />
+          <p className="textLMD">Lời mở đầu</p>
+          <p className="textDT">{product.description}</p>
+          <div className="d-flex justify-content-end my-3"></div>
         </div>
       </div>
     </Layout>

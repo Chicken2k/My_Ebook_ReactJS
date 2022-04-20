@@ -29,6 +29,7 @@ function AdminPage() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [orders, setOrders] = useState([]);
+  const [mg, setMg] = useState([]);
   useEffect(() => {
     getData();
   }, []);
@@ -67,7 +68,7 @@ function AdminPage() {
         ordersArray.push(doc.data());
         setLoading(false);
       });
-      console.log(ordersArray);
+      
       setOrders(ordersArray);
     } catch (error) {
       console.log(error);
@@ -236,9 +237,10 @@ function AdminPage() {
         <Tab eventKey="orders" title="Orders">
        
           {orders.map((order) => {
-            
+            console.log(order)
             return (
               <table className="table mt-3 order">
+              
                 <thead>
                   <tr>
                     <th>Image</th>
@@ -250,8 +252,9 @@ function AdminPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {order.cartItems.map((item) => {
-                    console.log(orders.cartItems);
+                
+                   {order.cartItems.map((item) => {
+                    
                     return (
                       <tr>
                         <td>
@@ -263,15 +266,54 @@ function AdminPage() {
                         
                       </tr>
                     );
-                  })}
+                  })} 
+                    
+               
                  
                   
                 </tbody>
+               
               </table>
             );
           })}
         </Tab>
         <Tab eventKey="contact" title="Users" disabled></Tab>
+        {/* <Tab eventKey="mg" title="quan li nguoi dung" >
+        {orders.map((order) => {
+            console.log(order)
+            return (
+              <table className="table mt-3 order">
+              
+                <thead>
+                  <tr>
+      
+                    <th>Name</th>
+                    <th>Địa chỉ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                   {order.map((item) => {
+                    console.log(order)
+                    return (
+                      <tr>
+                        <td>{item.name}</td>
+
+                        <td>{item.address}</td>
+                        
+                      </tr>
+                    );
+                  })} 
+                    
+               
+                 
+                  
+                </tbody>
+               
+              </table>
+            );
+          })}
+        </Tab> */}
       </Tabs>
     </Layout>
   );

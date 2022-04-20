@@ -159,25 +159,10 @@ p {
   padding-top: 10px;
 }
 
-.textProducts {
 
 
-  color: black;
-  font-size: 30px;
-  font-weight: 700;
-}
 
-.textLMD {
-  color: black;
-  font-size: 25px;
-  font-weight: 700;
-  box-shadow: rgba(240, 46, 120, 0.4) 0px 5px, rgba(231, 44, 131, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
 
-}
-.textDT{
-  color: black;
-  font-size: 15px;
-}
 
 /* CMM */
 .students {
@@ -298,3 +283,124 @@ p {
   font-size: 15px;
   font-weight: normal;
 }
+
+ /* icon
+ .icon-wrapper{
+  width: 50px;
+  height: 50px;
+  position: relative;
+ }
+ .icon-wrapper::after{
+  content: attr(cartItems);
+  width: 20px;
+  height: 20px;
+  background-color: #d32b2b;
+  color: #fff;
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  right: 0;
+  opacity: 0;
+  transform: translateY(3px);
+  
+ }
+ .icon-wrapper:hover::after{
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .25s;
+  transform: .25s;
+ }
+ .bell-icon{
+  max-width: 100%;
+ }
+ 
+ @keyframes shake{
+  10%{
+  transform: rotate(15deg);
+  }
+  20%{
+    transform: rotate(-15deg);
+  }
+  30%{
+    transform: rotate(15deg);
+  }
+  50%{
+    transform: rotate(0deg);
+  }
+ } */
+/* OwlCarousel */
+/* 
+<div class="card">
+<img src="./img/kh1.jpg" class="card-img-top" alt="kh1">
+<div class="card-body">
+    <h5 class="card-title">The Ultimate MySQL Bootcamp: Go from SQL Beginner to
+        Expert</h5>
+    <p class="card-text">Colt Steele Ian Schoonover</p>
+    <div class="card__stars">
+        <span>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half"></i>
+        </span>
+        <span class="card__rate">4.6</span>
+        <span class="card__total">(11.597)</span>
+    </div>
+    <div class="card__price">
+        <span>$179.99</span>
+        <span>$9.99</span>
+    </div>
+</div>
+</div>
+
+
+<div className="cart col-md-4">
+                  <div className="m-2 p-1 product position-relative">
+                    <div className="product-content">
+                     
+                      <div className="text-center">
+                        <img
+                          src={product.imageURL}
+                          alt=""
+                          className="product-img"
+                        />
+                      </div>
+                      <p className="productNameBook">{product.name}</p>
+                      <div className="card__stars">
+                                            <span>
+                                            <FaStar />
+                                            <FaStar />
+                                            <FaStar />
+                                            <FaStar />
+                                            <FaStarHalf />
+                                            </span>
+                                            <span className="card__rate">4.6</span>
+                                            <span className="card__total">(11.597)</span>
+                                        </div>
+                      <h4>{product.price} $</h4>
+                      
+                    </div>
+                    <div className="product-actions">
+                      <h2>{product.price} $</h2>
+                      <div className="d-flex">
+                        <button
+                          className="button--red mx-2"
+                          onClick={() => addToCart(product)}
+                        >
+                          ADD TO CART
+                        </button>
+                        <button className="button--red"
+                          onClick={() => {
+                            // chuyen toi trong Productinfo
+                            navigate(`/productinfo/${product.id}`);
+                          }}
+                        >
+                          ViEW
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div> */

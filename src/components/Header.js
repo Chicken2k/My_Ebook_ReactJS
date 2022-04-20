@@ -36,11 +36,7 @@ function Header() {
                 <FaUser/> {user.email.substring(0, user.email.length - 10)}
                 </Link>
               </li>
-              <li className=" text-navbar nav-item">
-                <Link className="nav-link" to="/orders">
-                  Đơn Hàng
-                </Link>
-              </li>
+          
               <li className=" text-navbar nav-item">
                 <Link className="nav-link" to="/">
                   Liên Hệ
@@ -51,12 +47,12 @@ function Header() {
                  Đọc Sách
                 </Link>
               </li>
-              <li className=" text-navbar nav-item">
+              <li className=" text-navbar nav-item  icon-wrapper"  data-number="1">
                 <Link className="nav-link" to="/cart">
-                  <FaCartPlus /> {cartItems.length}
+                  <FaCartPlus className="bell-icon" /> {cartItems.length}
                 </Link>
               </li>
-              <li className=" text-navbar nav-item">
+              <li className=" text-navbar nav-item  ">
                 <Link className="nav-link" to="/" onClick={logout}>
                 <button className="button--red">Đăng Xuất</button>
                 </Link>
