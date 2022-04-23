@@ -24,6 +24,7 @@
   
 }
 
+
 .card_products_name .iStar{
   color: #F4C150;
   font-size: 20px;
@@ -31,6 +32,9 @@
 }
 .card_products .button--red{
   margin-top: 20px;
+}
+#product-actions-gia{
+  color: #ec5252;
 }
 .textLMD {
   color: black;

@@ -90,7 +90,7 @@ function CartPage() {
                   <img src={item.imageURL} height="80" width="80" />{" "}
                 </td>
                 <td>{item.name}</td>
-                <td>{item.price}</td>
+                <td>{item.price} đ</td>
                 <td>
                   <FaTrash
                     onClick={() => {
@@ -104,7 +104,7 @@ function CartPage() {
         </tbody>
       </table>
       <div className="d-flex justify-content-end">
-        <h1 className="total-amount">Tổng {totalAmount} $</h1>
+        <h1 className="total-amount">Tổng {totalAmount} đ</h1>
       </div>
       <div className="d-flex justify-content-end mt-3">
         <button onClick={handleShow}>Đặt Hàng </button>

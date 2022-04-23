@@ -14,6 +14,7 @@ import { Modal } from "react-bootstrap";
 import { async } from "@firebase/util";
 import { toast } from "react-toastify";
 import { Tab, Tabs } from "react-bootstrap";
+import "../stylesheet/admin.css";
 
 function AdminPage() {
   const [products, setProducts] = useState([]);
@@ -24,16 +25,25 @@ function AdminPage() {
     imageURL: "",
     category: "",
   });
-  
+  const [books, setBooks] = useState([]);
+  const [book, setBook] = useState({
+    name: "",
+    imageURL: "",
+    pdfURL: "",
+    category: "",
+  });
+
   const [show, setShow] = useState(false);
   const [add, setAdd] = useState(false);
+  const [showBook, setShowBook] = useState(false);
+  const [addBookPdf, setAddBookPdf] = useState(false);
+  // console.log(add)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleCloseBook = () => setShowBook(false);
+  const handleShowBook = () => setShowBook(true);
   const [orders, setOrders] = useState([]);
-  const [books,setBooks]= useState([]);
-  const [book,setBook]= useState([]);
- 
-  
+
   //product
   useEffect(() => {
     getData();
@@ -58,30 +68,30 @@ function AdminPage() {
       setLoading(false);
     }
   }
-//book
-useEffect(() => {
-  getBookData();
-}, []);
+  //book
+  useEffect(() => {
+    getBookData();
+  }, []);
 
-async function getBookData() {
-  try {
-    setLoading(true);
-    const book = await getDocs(collection(fireDB, "books"));
-    const booksArray = [];
-    book.forEach((doc) => {
-      const obj = {
-        id: doc.id,
-        ...doc.data(),
-      };
-      booksArray.push(obj);
+  async function getBookData() {
+    try {
+      setLoading(true);
+      const bookFree = await getDocs(collection(fireDB, "books"));
+      const booksArray = [];
+      bookFree.forEach((doc) => {
+        const obj = {
+          id: doc.id,
+          ...doc.data(),
+        };
+        booksArray.push(obj);
+        setLoading(false);
+      });
+      setBooks(booksArray);
+    } catch (error) {
+      console.log(error);
       setLoading(false);
-    });
-    setBooks(booksArray);
-  } catch (error) {
-    console.log(error);
-    setLoading(false);
+    }
   }
-}
 
   //Order
   useEffect(() => {
@@ -97,16 +107,15 @@ async function getBookData() {
         ordersArray.push(doc.data());
         setLoading(false);
       });
-      
+
       setOrders(ordersArray);
     } catch (error) {
       console.log(error);
       setLoading(false);
     }
   }
-  
 
-
+  //product
   const editHandler = (item) => {
     setProduct(item);
     setShow(true);
@@ -153,13 +162,13 @@ async function getBookData() {
   //book
   const editHandlerBook = (item) => {
     setBook(item);
-    setShow(true);
+    setShowBook(true);
   };
   const updateBook = async () => {
     try {
       setLoading(true);
       await setDoc(doc(fireDB, "books", book.id), book);
-      handleClose();
+      handleCloseBook();
       toast.success("book updated successfully");
       window.location.reload();
     } catch (error) {
@@ -171,7 +180,7 @@ async function getBookData() {
     try {
       setLoading(true);
       await addDoc(collection(fireDB, "books"), book);
-      handleClose();
+      handleCloseBook();
       toast.success("books add successfully");
       window.location.reload();
     } catch (error) {
@@ -180,8 +189,8 @@ async function getBookData() {
     }
   };
   const addHandlerBook = () => {
-    setAdd(true);
-    handleShow();
+    setAddBookPdf(true);
+    handleShowBook();
   };
   const deleteBook = async (item) => {
     try {
@@ -194,6 +203,7 @@ async function getBookData() {
       setLoading(false);
     }
   };
+
   return (
     <Layout loading={loading}>
       <Tabs
@@ -264,8 +274,8 @@ async function getBookData() {
                 <input
                   type="text"
                   value={product.imageURL}
-                  className="image url"
-                  placeholder="form-control"
+                  className="form-control"
+                  placeholder="img URL"
                   onChange={(e) =>
                     setProduct({ ...product, imageURL: e.target.value })
                   }
@@ -288,15 +298,31 @@ async function getBookData() {
                     setProduct({ ...product, category: e.target.value })
                   }
                 />
-                <input
+                {/* <input
                   type="text"
                   value={product.description}
-                  className="form-control"
-                  placeholder="description"
+                  className="formDescription  "
+                 
+                  
                   onChange={(e) =>
                     setProduct({ ...product, description: e.target.value })
                   }
-                />
+                /> */}
+                <div className="col-md-12">
+                  <label for="comments" className="form-label"></label>
+                  <textarea
+                    id="comments"
+                    className="form-control"
+                    rows={5}
+                    type="text"
+                    value={product.description}
+                    placeholder="description"
+                    onChange={(e) =>
+                      setProduct({ ...product, description: e.target.value })
+                    }
+                  ></textarea>
+                </div>
+
                 <hr />
               </div>
             </Modal.Body>
@@ -350,10 +376,10 @@ async function getBookData() {
               })}
             </tbody>
           </table>
-          <Modal show={show} onHide={handleClose}>
+          <Modal showBook={showBook} onHide={handleCloseBook}>
             <Modal.Header closeButton>
               <Modal.Title>
-                {add === true ? "Add a product" : "Edit product"}
+                {addBookPdf === true ? "Add a Book" : "Edit Book"}
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -364,9 +390,7 @@ async function getBookData() {
                   value={book.name}
                   className="form-control"
                   placeholder="name"
-                  onChange={(e) =>
-                    setBook({ ...book, name: e.target.value })
-                  }
+                  onChange={(e) => setBook({ ...book, name: e.target.value })}
                 />
                 <input
                   type="text"
@@ -382,9 +406,7 @@ async function getBookData() {
                   value={book.pdfURL}
                   className="form-control"
                   placeholder="pdfURL"
-                  onChange={(e) =>
-                    setBook({ ...book, pdfURL: e.target.value })
-                  }
+                  onChange={(e) => setBook({ ...book, pdfURL: e.target.value })}
                 />
                 <input
                   type="text"
@@ -409,7 +431,7 @@ async function getBookData() {
             </Modal.Body>
             <Modal.Footer>
               <button>Close</button>
-              {add ? (
+              {addBookPdf ? (
                 <button onClick={addBook}>SAVE</button>
               ) : (
                 <button onClick={updateBook}>SAVE</button>
@@ -418,12 +440,9 @@ async function getBookData() {
           </Modal>
         </Tab>
         <Tab eventKey="orders" title="Orders">
-       
           {orders.map((order) => {
-           
             return (
               <table className="table mt-3 order">
-              
                 <thead>
                   <tr>
                     <th>Image</th>
@@ -435,9 +454,7 @@ async function getBookData() {
                   </tr>
                 </thead>
                 <tbody>
-                
-                   {order.cartItems.map((item) => {
-                    
+                  {order.cartItems.map((item) => {
                     return (
                       <tr>
                         <td>
@@ -446,16 +463,10 @@ async function getBookData() {
                         <td>{item.name}</td>
                         <td>{item.price}</td>
                         <td>{item.address}</td>
-                        
                       </tr>
                     );
-                  })} 
-                    
-               
-                 
-                  
+                  })}
                 </tbody>
-               
               </table>
             );
           })}

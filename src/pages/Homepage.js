@@ -160,10 +160,10 @@ function Homepage() {
                         <span className="card__rate">4.6</span>
                         <span className="card__total">(11.597)</span>
                       </div>
-                      <h4>{product.price} $</h4>
+                      <h4 id="product-actions-gia">{product.price} đ</h4>
                     </div>
                     <div className="product-actions">
-                      <h2>{product.price} $</h2>
+                      <h2  >{product.price} đ</h2>
                       <div className="d-flex">
                         <button
                           className="button--red mx-2"
