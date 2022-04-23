@@ -24,12 +24,17 @@ function AdminPage() {
     imageURL: "",
     category: "",
   });
+  
   const [show, setShow] = useState(false);
   const [add, setAdd] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [orders, setOrders] = useState([]);
-  const [mg, setMg] = useState([]);
+  const [books,setBooks]= useState([]);
+  const [book,setBook]= useState([]);
+ 
+  
+  //product
   useEffect(() => {
     getData();
   }, []);
@@ -53,8 +58,32 @@ function AdminPage() {
       setLoading(false);
     }
   }
+//book
+useEffect(() => {
+  getBookData();
+}, []);
 
-  //admin
+async function getBookData() {
+  try {
+    setLoading(true);
+    const book = await getDocs(collection(fireDB, "books"));
+    const booksArray = [];
+    book.forEach((doc) => {
+      const obj = {
+        id: doc.id,
+        ...doc.data(),
+      };
+      booksArray.push(obj);
+      setLoading(false);
+    });
+    setBooks(booksArray);
+  } catch (error) {
+    console.log(error);
+    setLoading(false);
+  }
+}
+
+  //Order
   useEffect(() => {
     getOrdersData();
   }, []);
@@ -75,6 +104,9 @@ function AdminPage() {
       setLoading(false);
     }
   }
+  
+
+
   const editHandler = (item) => {
     setProduct(item);
     setShow(true);
@@ -115,6 +147,50 @@ function AdminPage() {
       getData();
     } catch (error) {
       toast.failed("product delete failed");
+      setLoading(false);
+    }
+  };
+  //book
+  const editHandlerBook = (item) => {
+    setBook(item);
+    setShow(true);
+  };
+  const updateBook = async () => {
+    try {
+      setLoading(true);
+      await setDoc(doc(fireDB, "books", book.id), book);
+      handleClose();
+      toast.success("book updated successfully");
+      window.location.reload();
+    } catch (error) {
+      toast.error("book updated failed");
+      setLoading(false);
+    }
+  };
+  const addBook = async () => {
+    try {
+      setLoading(true);
+      await addDoc(collection(fireDB, "books"), book);
+      handleClose();
+      toast.success("books add successfully");
+      window.location.reload();
+    } catch (error) {
+      toast.error("books add failed");
+      setLoading(false);
+    }
+  };
+  const addHandlerBook = () => {
+    setAdd(true);
+    handleShow();
+  };
+  const deleteBook = async (item) => {
+    try {
+      setLoading(true);
+      await deleteDoc(doc(fireDB, "books", item.id));
+      toast.success("books deteted successfully");
+      getData();
+    } catch (error) {
+      toast.failed("books delete failed");
       setLoading(false);
     }
   };
@@ -234,10 +310,117 @@ function AdminPage() {
             </Modal.Footer>
           </Modal>
         </Tab>
+        <Tab eventKey="books" title="Books">
+          <div className="d-flex justify-content-between">
+            <h3>BOOK LIST</h3>
+            <button onClick={addHandlerBook}> ADD book</button>
+          </div>
+          <table className="table mt-3">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {books.map((item) => {
+                return (
+                  <tr>
+                    <td>
+                      <img src={item.imageURL} height="80" width="80" />{" "}
+                    </td>
+                    <td>{item.name}</td>
+                    <td>{item.category}</td>
+                    <td>
+                      <FaTrash
+                        color="red"
+                        size={20}
+                        onClick={() => deleteBook(item)}
+                      />
+                      <FaEdit
+                        onClick={() => editHandlerBook(item)}
+                        color="blue"
+                        size={20}
+                      />
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>
+                {add === true ? "Add a product" : "Edit product"}
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {" "}
+              <div className="register-form">
+                <input
+                  type="text"
+                  value={book.name}
+                  className="form-control"
+                  placeholder="name"
+                  onChange={(e) =>
+                    setBook({ ...book, name: e.target.value })
+                  }
+                />
+                <input
+                  type="text"
+                  value={book.imageURL}
+                  className="form-control"
+                  placeholder="img URL"
+                  onChange={(e) =>
+                    setBook({ ...book, imageURL: e.target.value })
+                  }
+                />
+                <input
+                  type="text"
+                  value={book.pdfURL}
+                  className="form-control"
+                  placeholder="pdfURL"
+                  onChange={(e) =>
+                    setBook({ ...book, pdfURL: e.target.value })
+                  }
+                />
+                <input
+                  type="text"
+                  value={book.category}
+                  className="form-control"
+                  placeholder="category"
+                  onChange={(e) =>
+                    setBook({ ...book, category: e.target.value })
+                  }
+                />
+                <input
+                  type="text"
+                  value={book.description}
+                  className="form-control"
+                  placeholder="description"
+                  onChange={(e) =>
+                    setBook({ ...book, description: e.target.value })
+                  }
+                />
+                <hr />
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <button>Close</button>
+              {add ? (
+                <button onClick={addBook}>SAVE</button>
+              ) : (
+                <button onClick={updateBook}>SAVE</button>
+              )}
+            </Modal.Footer>
+          </Modal>
+        </Tab>
         <Tab eventKey="orders" title="Orders">
        
           {orders.map((order) => {
-            console.log(order)
+           
             return (
               <table className="table mt-3 order">
               

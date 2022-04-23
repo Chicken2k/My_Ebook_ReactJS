@@ -43,7 +43,7 @@ function Header() {
                 </Link>
               </li>
               <li className=" text-navbar nav-item">
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/book">
                  Đọc Sách
                 </Link>
               </li>

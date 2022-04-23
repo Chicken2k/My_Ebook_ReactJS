@@ -16,6 +16,7 @@ import './stylesheet/cart.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminPage from "./pages/AdminPage";
+import BookPage from "./pages/BookPage";
 function App() {
   return (
     <div className="App">
@@ -26,6 +27,8 @@ function App() {
 
           <Route path='/productinfo/:productid' exact element={<ProtectedRoutes><ProductInfo /></ProtectedRoutes>} />
           <Route path='/cart' exact element={<ProtectedRoutes><CartPage /></ProtectedRoutes>} />
+          <Route path='/book' exact element={<ProtectedRoutes><BookPage /></ProtectedRoutes>} />
+          
           <Route path='/orders' exact element={<ProtectedRoutes><OrdersPage /></ProtectedRoutes>} />
           <Route path='/admin' exact element={<ProtectedRoutes><AdminPage /></ProtectedRoutes>} />
           <Route path='/login' exact element={<LoginPage />} />
