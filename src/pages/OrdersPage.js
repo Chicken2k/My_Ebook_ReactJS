@@ -36,8 +36,11 @@ function OrdersPage() {
           {orders
             .filter((obj) => obj.userid == userid)
             .map((order) => {
+       
               return (
+               
                 <table className="table mt-3 order">
+                
                   <thead>
                     <tr>
                       <th>Image</th>

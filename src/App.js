@@ -13,6 +13,7 @@ import './stylesheet/products.css';
 import './stylesheet/authentication.css';
 import './stylesheet/header.css'
 import './stylesheet/cart.css'
+import './stylesheet/footer.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminPage from "./pages/AdminPage";
@@ -45,6 +46,7 @@ export default App;
 
 export const ProtectedRoutes=({children})=>{
   if(localStorage.getItem('currentUser')){
+  console.log(children)
     return children
   }
   else{

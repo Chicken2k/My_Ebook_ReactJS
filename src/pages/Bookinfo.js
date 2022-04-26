@@ -10,6 +10,7 @@ function Bookinfo() {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cartReducer);
+  const { addressInfo } = useSelector((state) => state.cartReducer);
   // useParams dung de lay thong tin
   const params = useParams();
   useEffect(() => {
@@ -32,6 +33,9 @@ function Bookinfo() {
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
+  useEffect(() => {
+    localStorage.setItem("addressInfo", JSON.stringify(addressInfo));
+  }, [addressInfo]);
   return (
     <Layout loading={loading}>
       <div className="container">

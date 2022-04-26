@@ -60,6 +60,7 @@
   height: 500px;
   background-size: cover;
   position: relative;
+  color: white;
 }
 
 .cover__content {
@@ -73,18 +74,13 @@
 }
 
 .cover .cover__content h1 {
-  color: white;
+  
   font-size: 40px;
   font-weight: 700;
 
 }
 
-p {
 
-  color: white;
-  font-size: 18px;
-  font-weight: normal;
-}
 
 /* INTRO */
 .intro {

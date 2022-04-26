@@ -12,10 +12,17 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FaStar, FaStarHalf } from "react-icons/fa";
+import imgs1 from "../img/s1.jpg";
+import imgs2 from "../img/s2.jpg";
+import imgs3 from "../img/s3.jpg";
+import imgs4 from "../img/s4.jpg";
+import imgs5 from "../img/s5.jpg";
+import imgs6 from "../img/s6.jpg";
 function Homepage() {
   const [products, setProducts] = useState([]);
   //useSelector : selector co the dung nhiu noi, nhiu component khac nhau
   const { cartItems } = useSelector((state) => state.cartReducer);
+  const { addressInfo } = useSelector((state) => state.cartReducer);
   const [loading, setLoading] = useState(false);
   const [searchKey, setSearchKey] = useState("");
   const [filterType, setFilterType] = useState("");
@@ -49,11 +56,13 @@ function Homepage() {
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
+  useEffect(() => {
+    localStorage.setItem("addressInfo", JSON.stringify(addressInfo));
+  }, [addressInfo]);
   //them vao gio hang
   const addToCart = (product) => {
     dispatch({ type: "ADD_TO_CART", payload: product });
   };
-  
 
   return (
     <Layout loading={loading}>
@@ -61,9 +70,9 @@ function Homepage() {
       <div className="cover">
         <div className="cover__content">
           <h1>Đọc sách Online</h1>
-          <p>
+          <h5>
             Mua sách thật chính là bạn đã ủng hộ cho tác giả và nhà xuất bản{" "}
-          </p>
+          </h5>
         </div>
       </div>
       <div className="intro">
@@ -126,9 +135,10 @@ function Homepage() {
             }}
           >
             <option value=""> ALL</option>
-            <option value="book">Electronics</option>
-            <option value="kinhdi">kinh di</option>
-            <option value="hai">hai</option>
+            <option value="mentality">Tâm Lý - Kỹ năng sống</option>
+            <option value="economy">Kinh tế - Quản lý</option>
+            <option value="literary">Văn học Việt Nam</option>
+            <option value="other">Khác</option>
           </select>
         </div>
         <div className="row">
@@ -138,7 +148,7 @@ function Homepage() {
             .filter((obj) => obj.category.toLowerCase().includes(filterType))
             .map((product) => {
               return (
-                <div className="cart col-md-4">
+                <div className="cart col-md-3 body_cart">
                   <div className="m-2 p-1 product position-relative">
                     <div className="product-content">
                       <div className="text-center">
@@ -163,7 +173,7 @@ function Homepage() {
                       <h4 id="product-actions-gia">{product.price} đ</h4>
                     </div>
                     <div className="product-actions">
-                      <h2  >{product.price} đ</h2>
+                      <h2>{product.price} đ</h2>
                       <div className="d-flex">
                         <button
                           className="button--red mx-2"
@@ -178,7 +188,7 @@ function Homepage() {
                             navigate(`/productinfo/${product.id}`);
                           }}
                         >
-                          ViEW
+                          VIEW
                         </button>
                       </div>
                     </div>
@@ -204,170 +214,188 @@ function Homepage() {
           </div>
         </div>
       </div>
-      {/* <OwlCarousel className="owl-theme" loop margin={10} nav>
-      <div className="students">
-        <div className="students__content">
-            <h2>What our students have to say</h2>
-            <div className="owl-carousel owl-theme students__carousel">
-                <div className="card card--feedback">
-                    <div className="card-body">
-                        <div className="card__top">
-                            <div className="card__avatar">
-                                <img src="../img/s1.jpg" alt="student 1"/>
-                            </div>
-                            <div>
-                                <p className="card__name">Oscar Javier</p>
-                                <div className="card__stars">
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star-half"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <p className="card-text">
-                            I had a couple of months of experience trading without consistent
-                            results. After taking this
-                            course I'm pretty confident that I'll be a better trader and know better when to enter a
-                            trade, how to put my stop
-                            loss and take profit, how many lots to trade and much more.
-                        </p>
-                    </div>
+      <OwlCarousel className="owl-theme" margin={10} items="3" autoplay>
+        <div className="students">
+          <div className="card card--feedback">
+            <div className="card-body">
+              <div className="card__top">
+                <div className="card__avatar">
+                  <img src={imgs1} alt="student 1" />
                 </div>
-                <div className="card card--feedback">
-                    <div className="card-body">
-                        <div className="card__top">
-                            <div className="card__avatar">
-                                <img src="../img/s2.jpg" alt="student 2"/>
-                            </div>
-                            <div>
-                                <p className="card__name">Estelle</p>
-                                <div className="card__stars">
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star-half"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <p className="card-text">
-                            My first complete Photoshop for Designing t-shirts course done! I am
-                            not a designer at all, but
-                            after taking this course I really felt like a professional with enough confidence to now
-                            go out and design for the
-                            real world. Learned SO much! thank you!
-                        </p>
-                    </div>
+                <div>
+                  <p className="card__name">Oscar Javier</p>
+                  <div className="card__stars">
+                    <span className="iStar">
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStarHalf />
+                    </span>
+                  </div>
                 </div>
-                <div className="card card--feedback">
-                    <div className="card-body">
-                        <div className="card__top">
-                            <div className="card__avatar">
-                                <img src="../img/s3.jpg" alt="student 3"/>
-                            </div>
-                            <div>
-                                <p className="card__name">Mrinal</p>
-                                <div className="card__stars">
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star-half"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <p className="card-text">
-                            Great course for beginners as well as working professionals. I'm
-                            working as a UI developer for
-                            last 2 years and worked on different javascript frameworks but the clarity of concepts
-                            which I got after taking
-                            this course is exceptional which I was not having previously.
-                        </p>
-                    </div>
-                </div>
-                <div className="card card--feedback">
-                    <div className="card-body">
-                        <div className="card__top">
-                            <div className="card__avatar">
-                                <img src="../img/s4.jpg" alt="student 4"/>
-                            </div>
-                            <div>
-                                <p className="card__name">Flávio</p>
-                                <div className="card__stars">
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star-half"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <p className="card-text">
-                            Very explained even for a short course. It's not for full
-                            understanding, but it works perfectly as
-                            an introduction for the subject. And you can really build a robot after taking this
-                            course.
-                        </p>
-                    </div>
-                </div>
-                <div className="card card--feedback">
-                    <div className="card-body">
-                        <div className="card__top">
-                            <div className="card__avatar">
-                                <img src="../img/s5.jpg" alt="student 5"/>
-                            </div>
-                            <div>
-                                <p className="card__name">Angeles</p>
-                                <div className="card__stars">
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star-half"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <p className="card-text">
-                            I didn't know anything at all about FB ads for this course and have a
-                            client that is wanting to
-                            start using them. After taking this course i feel like I can help them and so much more
-                            confident in coming up with
-                            a strategy.
-                        </p>
-                    </div>
-                </div>
-                <div className="card card--feedback">
-                    <div className="card-body">
-                        <div className="card__top">
-                            <div className="card__avatar">
-                                <img src="../img/s6.jpg" alt="student 6"/>
-                            </div>
-                            <div>
-                                <p className="card__name">Carol</p>
-                                <div className="card__stars">
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star"></i>
-                                    <i className="fa fa-star-half"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <p className="card-text">
-                            After studying German for about six months my spelling and grammar is
-                            good, but I was having
-                            trouble with some pronunciation. After taking this course it has really helped me
-                            pronounce certain words I was
-                            having trouble with and also have better listening skill of German speakers.
-                        </p>
-                    </div>
-                </div>
+              </div>
+              <p className="card-text">
+                I had a couple of months of experience trading without
+                consistent results. After taking this course I'm pretty
+                confident that I'll be a better trader and know better when to
+                enter a trade, how to put my stop loss and take profit, how many
+                lots to trade and much more.
+              </p>
             </div>
+          </div>
         </div>
-    </div>
-      </OwlCarousel> */}
+        <div className="students">
+          <div className="card card--feedback">
+            <div className="card-body">
+              <div className="card__top">
+                <div className="card__avatar">
+                  <img src={imgs2} alt="student 1" />
+                </div>
+                <div>
+                  <p className="card__name">Oscar Javier</p>
+                  <div className="card__stars">
+                    <span className="iStar">
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStarHalf />
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p className="card-text">
+                I had a couple of months of experience trading without
+                consistent results. After taking this course I'm pretty
+                confident that I'll be a better trader and know better when to
+                enter a trade, how to put my stop loss and take profit, how many
+                lots to trade and much more.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="students">
+          <div className="card card--feedback">
+            <div className="card-body">
+              <div className="card__top">
+                <div className="card__avatar">
+                  <img src={imgs3} alt="student 1" />
+                </div>
+                <div>
+                  <p className="card__name">Oscar Javier</p>
+                  <div className="card__stars">
+                    <span className="iStar">
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStarHalf />
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p className="card-text">
+                I had a couple of months of experience trading without
+                consistent results. After taking this course I'm pretty
+                confident that I'll be a better trader and know better when to
+                enter a trade, how to put my stop loss and take profit, how many
+                lots to trade and much more.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="students">
+          <div className="card card--feedback">
+            <div className="card-body">
+              <div className="card__top">
+                <div className="card__avatar">
+                  <img src={imgs4} alt="student 1" />
+                </div>
+                <div>
+                  <p className="card__name">Oscar Javier</p>
+                  <div className="card__stars">
+                    <span className="iStar">
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStarHalf />
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p className="card-text">
+                I had a couple of months of experience trading without
+                consistent results. After taking this course I'm pretty
+                confident that I'll be a better trader and know better when to
+                enter a trade, how to put my stop loss and take profit, how many
+                lots to trade and much more.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="students">
+          <div className="card card--feedback">
+            <div className="card-body">
+              <div className="card__top">
+                <div className="card__avatar">
+                  <img src={imgs5} alt="student 1" />
+                </div>
+                <div>
+                  <p className="card__name">Oscar Javier</p>
+                  <div className="card__stars">
+                    <span className="iStar">
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStarHalf />
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p className="card-text">
+                I had a couple of months of experience trading without
+                consistent results. After taking this course I'm pretty
+                confident that I'll be a better trader and know better when to
+                enter a trade, how to put my stop loss and take profit, how many
+                lots to trade and much more.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="students">
+          <div className="card card--feedback">
+            <div className="card-body">
+              <div className="card__top">
+                <div className="card__avatar">
+                  <img src={imgs6} alt="student 1" />
+                </div>
+                <div>
+                  <p className="card__name">Oscar Javier</p>
+                  <div className="card__stars">
+                    <span className="iStar">
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStarHalf />
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p className="card-text">
+                I had a couple of months of experience trading without
+                consistent results. After taking this course I'm pretty
+                confident that I'll be a better trader and know better when to
+                enter a trade, how to put my stop loss and take profit, how many
+                lots to trade and much more.
+              </p>
+            </div>
+          </div>
+        </div>
+      </OwlCarousel>
       ;
     </Layout>
   );

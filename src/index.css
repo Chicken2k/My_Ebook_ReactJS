@@ -7,6 +7,7 @@ body {
  
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #eeeeee;
 }
 body,html{
   overflow-x: hidden !important;
@@ -14,4 +15,8 @@ body,html{
 code {
   font-family: 'Montserrat', sans-serif;
 
+}
+
+.body_cart{
+  background-color: white;
 }

@@ -205,19 +205,19 @@ function AdminPage() {
   };
 
   return (
-    <Layout loading={loading}>
+    <div loading={loading}>
       <Tabs
         defaultActiveKey="products"
         id="uncontrolled-tab-example"
         className="mb-3"
       >
-        <Tab eventKey="products" title="Products">
+        <Tab eventKey="products" title="Sản phẩm">
           <div className="d-flex justify-content-between">
             <h3>Products List</h3>
             <button onClick={addHandler}> ADD PRODUCT</button>
           </div>
-          <table className="table mt-3">
-            <thead>
+          <table className="table mt-3  ">
+            <thead className="textAdmin">
               <tr>
                 <th>Image</th>
                 <th>Name</th>
@@ -298,16 +298,7 @@ function AdminPage() {
                     setProduct({ ...product, category: e.target.value })
                   }
                 />
-                {/* <input
-                  type="text"
-                  value={product.description}
-                  className="formDescription  "
-                 
-                  
-                  onChange={(e) =>
-                    setProduct({ ...product, description: e.target.value })
-                  }
-                /> */}
+
                 <div className="col-md-12">
                   <label for="comments" className="form-label"></label>
                   <textarea
@@ -322,6 +313,60 @@ function AdminPage() {
                     }
                   ></textarea>
                 </div>
+                <input
+                  type="text"
+                  value={product.company}
+                  className="form-control"
+                  placeholder="Công ty phát hành"
+                  onChange={(e) =>
+                    setProduct({ ...product, company: e.target.value })
+                  }
+                />
+                <input
+                  type="text"
+                  value={product.day}
+                  className="form-control"
+                  placeholder="Ngày xuất bản"
+                  onChange={(e) =>
+                    setProduct({ ...product, day: e.target.value })
+                  }
+                />
+                <input
+                  type="text"
+                  value={product.version}
+                  className="form-control"
+                  placeholder="Phiên bản"
+                  onChange={(e) =>
+                    setProduct({ ...product, version: e.target.value })
+                  }
+                />
+                <input
+                  type="text"
+                  value={product.paper}
+                  className="form-control"
+                  placeholder="Loại bìa"
+                  onChange={(e) =>
+                    setProduct({ ...product, paper: e.target.value })
+                  }
+                />
+                <input
+                  type="text"
+                  value={product.numberPages}
+                  className="form-control"
+                  placeholder="Số trang"
+                  onChange={(e) =>
+                    setProduct({ ...product, numberPages: e.target.value })
+                  }
+                />
+                <input
+                  type="text"
+                  value={product.publishing}
+                  className="form-control"
+                  placeholder="Nhà xuất bản"
+                  onChange={(e) =>
+                    setProduct({ ...product, publishing: e.target.value })
+                  }
+                />
 
                 <hr />
               </div>
@@ -336,13 +381,13 @@ function AdminPage() {
             </Modal.Footer>
           </Modal>
         </Tab>
-        <Tab eventKey="books" title="Books">
+        <Tab eventKey="books" title="Sách">
           <div className="d-flex justify-content-between">
             <h3>BOOK LIST</h3>
             <button onClick={addHandlerBook}> ADD book</button>
           </div>
           <table className="table mt-3">
-            <thead>
+            <thead className="textAdmin">
               <tr>
                 <th>Image</th>
                 <th>Name</th>
@@ -439,18 +484,29 @@ function AdminPage() {
             </Modal.Footer>
           </Modal>
         </Tab>
-        <Tab eventKey="orders" title="Orders">
+        <Tab eventKey="orders" title="Đặt hàng ">
           {orders.map((order) => {
+            {
+              /* var objectArray = Object.entries(order.addressInfo);
+            console.log(objectArray); */
+            }
+
+            {
+              /* console.log(orders)  */
+            }
+            {
+              /* console.log(order.cartItems) */
+            }
             return (
               <table className="table mt-3 order">
-                <thead>
+                <thead className="textAdmin">
                   <tr>
                     <th>Image</th>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>Địa chỉ</th>
+
+                    <th></th>
+                    <th>Thông tin người mua</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -463,6 +519,15 @@ function AdminPage() {
                         <td>{item.name}</td>
                         <td>{item.price}</td>
                         <td>{item.address}</td>
+                        {Object.keys(order.addressInfo).map((key) => {
+                          return (
+                            <tr>
+
+                              
+                              <td>{order.addressInfo[key]}</td>
+                              </tr>
+                          );
+                        })}
                       </tr>
                     );
                   })}
@@ -471,9 +536,11 @@ function AdminPage() {
             );
           })}
         </Tab>
-        <Tab eventKey="contact" title="Users" disabled></Tab>
-        {/* <Tab eventKey="mg" title="quan li nguoi dung" >
-        {orders.map((order) => {
+        <Tab eventKey="contact" title="Người dùng" disabled></Tab>
+        <Tab eventKey="topbook" title="Sản phẩm bán chạy" disabled></Tab>
+        <Tab eventKey="cmt" title="Đánh giá người dùng " disabled></Tab>
+        <Tab eventKey="mg" title="quan li nguoi dung" disabled>
+          {/* {orders.map((order) => {
             console.log(order)
             return (
               <table className="table mt-3 order">
@@ -506,10 +573,10 @@ function AdminPage() {
                
               </table>
             );
-          })}
-        </Tab> */}
+          })} */}
+        </Tab>
       </Tabs>
-    </Layout>
+    </div>
   );
 }
 export default AdminPage;

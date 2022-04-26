@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 function CartPage() {
   //useSelector : selector co the dung nhiu noi, nhiu component khac nhau
   const { cartItems } = useSelector((state) => state.cartReducer);
+  const { addressInfo } = useSelector((state) => state.cartReducer);
   const [totalAmount, setTotalAmount] = useState(0);
   // dispath di duoc action len redux-store
   const dispatch = useDispatch();
@@ -24,26 +25,24 @@ function CartPage() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    // let temp = 0;
-    // cartItems.forEach((cartItems) => {
-    //   temp = temp + cartItems.price;
-    // });
-    var i=0;
-    function coinHandler(accmulator,currentValue){
-      i++;
-      return accmulator+parseInt(currentValue.price);
-      
-    }
-    let temp=cartItems.reduce(coinHandler,0);
-    setTotalAmount(temp);
-    console.log(cartItems)
+    let temp = 0;
+    cartItems.forEach((cartItems) => {
+      temp = temp + (Number(cartItems.price)*1000);
+    });
+  
+    setTotalAmount(temp.toLocaleString('vi-VN'));
+    console.log(temp)
   }, [cartItems]);
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
+  useEffect(() => {
+    localStorage.setItem("addressInfo", JSON.stringify(addressInfo));
+  }, [addressInfo]);
   const deleteFromCart = (product) => {
     dispatch({ type: "DELETE_FROM_CART", payload: product });
   };
+  
   // Order
   const placeOrder = async () => {
     const addressInfo = {
@@ -74,7 +73,7 @@ function CartPage() {
   return (
     <Layout loading={loading}>
       <table className="table mt-3">
-        <thead>
+        <thead className="textAdmin">
           <tr>
             <th>Image</th>
             <th>Name</th>
@@ -138,7 +137,7 @@ function CartPage() {
                 setAddress(e.target.value);
               }}
             />
-            <input
+            {/* <input
               className="form-control"
               placeholder="pincode"
               type="number"
@@ -146,7 +145,7 @@ function CartPage() {
               onChange={(e) => {
                 setPincode(e.target.value);
               }}
-            />
+            /> */}
             <input
               type="number"
               className="form-control"

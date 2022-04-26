@@ -8,7 +8,7 @@ function Layout(props) {
       {props.loading && <Loader />}
       <Header />
       <div className="content">{props.children}</div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

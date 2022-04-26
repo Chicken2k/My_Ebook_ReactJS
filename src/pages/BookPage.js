@@ -14,6 +14,7 @@ function Homepage() {
   const [books, setBooks] = useState([]);
   //useSelector : selector co the dung nhiu noi, nhiu component khac nhau
   const { cartItems } = useSelector((state) => state.cartReducer);
+  const { addressInfo } = useSelector((state) => state.cartReducer);
   const [loading, setLoading] = useState(false);
   const [searchKey, setSearchKey] = useState("");
   const [filterType, setFilterType] = useState("");
