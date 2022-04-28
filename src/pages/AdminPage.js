@@ -26,10 +26,11 @@ function AdminPage() {
     category: "",
   });
   const [books, setBooks] = useState([]);
+ 
   const [book, setBook] = useState({
     name: "",
-    imageURL: "",
     pdfURL: "",
+    imageURL: "",
     category: "",
   });
 
@@ -37,6 +38,7 @@ function AdminPage() {
   const [add, setAdd] = useState(false);
   const [showBook, setShowBook] = useState(false);
   const [addBookPdf, setAddBookPdf] = useState(false);
+
   // console.log(add)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -70,7 +72,7 @@ function AdminPage() {
   }
   //book
   useEffect(() => {
-    getBookData();
+  getBookData();
   }, []);
 
   async function getBookData() {
@@ -191,6 +193,7 @@ function AdminPage() {
   const addHandlerBook = () => {
     setAddBookPdf(true);
     handleShowBook();
+    // console.log(Math.random())
   };
   const deleteBook = async (item) => {
     try {
@@ -257,6 +260,7 @@ function AdminPage() {
             <Modal.Header closeButton>
               <Modal.Title>
                 {add === true ? "Add a product" : "Edit product"}
+                {console.log(add)}
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -421,10 +425,11 @@ function AdminPage() {
               })}
             </tbody>
           </table>
-          <Modal showBook={showBook} onHide={handleCloseBook}>
+          <Modal show={showBook} onHide={handleCloseBook}>
             <Modal.Header closeButton>
               <Modal.Title>
                 {addBookPdf === true ? "Add a Book" : "Edit Book"}
+                {console.log(addBookPdf)}
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -486,17 +491,7 @@ function AdminPage() {
         </Tab>
         <Tab eventKey="orders" title="Đặt hàng ">
           {orders.map((order) => {
-            {
-              /* var objectArray = Object.entries(order.addressInfo);
-            console.log(objectArray); */
-            }
-
-            {
-              /* console.log(orders)  */
-            }
-            {
-              /* console.log(order.cartItems) */
-            }
+      
             return (
               <table className="table mt-3 order">
                 <thead className="textAdmin">
@@ -522,10 +517,8 @@ function AdminPage() {
                         {Object.keys(order.addressInfo).map((key) => {
                           return (
                             <tr>
-
-                              
                               <td>{order.addressInfo[key]}</td>
-                              </tr>
+                            </tr>
                           );
                         })}
                       </tr>
@@ -559,7 +552,6 @@ function AdminPage() {
                     return (
                       <tr>
                         <td>{item.name}</td>
-
                         <td>{item.address}</td>
                         
                       </tr>
