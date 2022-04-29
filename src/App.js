@@ -19,6 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AdminPage from "./pages/AdminPage";
 import BookPage from "./pages/BookPage";
 import Bookinfo from "./pages/Bookinfo";
+import Chat from "./components/Chat";
 function App() {
   return (
     <div className="App">
@@ -36,6 +37,7 @@ function App() {
           <Route path='/admin' exact element={<ProtectedRoutes><AdminPage /></ProtectedRoutes>} />
           <Route path='/login' exact element={<LoginPage />} />
           <Route path='/register' exact element={<RegisterPage />} />
+          
         </Routes>
       </BrowserRouter>
     </div>
