@@ -1,6 +1,6 @@
 import React from "react";
 import '../stylesheet/footer.css'
-
+import Chat from "./Chat";
 function Footer() {
   return (
     <div>
@@ -53,6 +53,7 @@ function Footer() {
                 <p>MyEbook</p>
             </div>
         </div>
+        <Chat />
     </div>
   );
 }
