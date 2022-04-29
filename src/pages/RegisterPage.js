@@ -67,7 +67,7 @@ function RegisterPage() {
                 }}
               />
               <input
-                type="text"
+                type="password"
                 className="form-control"
                 placeholder="Confirm password"
                 value={cpassword}
