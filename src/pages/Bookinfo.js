@@ -38,8 +38,8 @@ function Bookinfo() {
   }, [addressInfo]);
   return (
     <Layout loading={loading}>
-      <div className="container">
-        <div className="row card_products justify-content-center">
+      <div className="container ">
+        <div className="row body_cart card_products justify-content-center">
           <div className="col-4 ">
             {book && (
               <div className="card_products_img">
@@ -68,18 +68,18 @@ function Bookinfo() {
         <div>
           <hr />
 
-          <div className="d-flex justify-content-end my-3"></div>
-          <div className="container bookPDF">
-            <iframe
-              src={book.pdfURL}
-              width="740"
-              height="800"
-              allow="autoplay"
-            ></iframe>
+          <div className="d-flex justify-content-end my-3">
+            <div className="container bookPDF">
+              <iframe
+                src={book.pdfURL}
+                width="1040"
+                height="1000"
+                allow="autoplay"
+              ></iframe>
+            </div>
           </div>
-          
-          <div>
-          </div>
+
+          <div></div>
         </div>
       </div>
     </Layout>

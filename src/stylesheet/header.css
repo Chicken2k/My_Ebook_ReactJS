@@ -250,6 +250,7 @@
 
 .card--feedback {
   height: 280px;
+  border-radius: 15px;
 }
 
 .card-body {

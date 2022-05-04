@@ -1,10 +1,13 @@
 .product{
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 15px;
 }
 
 /* chinh chieu cao cua hinh */
 .product p{
   min-height: 3rem;
+  font-size: 19px;
+  padding-top: 10px;
 }
 .product-img{
   height: 200px;
@@ -13,6 +16,10 @@
 
 .product:hover .product-actions{
   opacity: 1;
+}
+.product-content{
+height: 390px;
+
 }
 .product-actions{
   position:absolute;

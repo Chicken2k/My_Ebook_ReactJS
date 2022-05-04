@@ -84,8 +84,8 @@ function ProductInfo() {
           <div className="productinfo_thongtin body_cart">
             <div className="container">
               <h3 className="textLMD  " >Thông tin chi tiết</h3>
-              <table className="table-fill">
-                <tbody className="table-hover">
+              <table className="table-fill textDT ">
+                <tbody className="table-hover table-body">
                   <tr>
                     <td className="text-left">Công ty phát hành </td>
                     <td className="text-left">{product.company}</td>

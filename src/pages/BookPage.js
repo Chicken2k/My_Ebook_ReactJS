@@ -83,14 +83,14 @@ function Homepage() {
             <option value="other">Khác</option>
           </select>
         </div>
-        <div className="row">
+        <div className="row body_cart">
           {/* Sap xep */}
           {books
             .filter((obj) => obj.name.toLowerCase().includes(searchKey))
             .filter((obj) => obj.category.toLowerCase().includes(filterType))
             .map((book) => {
               return (
-                <div className="cart col-md-4">
+                <div className="cart col-md-3">
                   <div className="m-2 p-1 product position-relative">
                     <div className="product-content">
                       <div className="text-center">

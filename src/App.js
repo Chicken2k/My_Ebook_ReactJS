@@ -14,6 +14,8 @@ import './stylesheet/authentication.css';
 import './stylesheet/header.css'
 import './stylesheet/cart.css'
 import './stylesheet/footer.css'
+import './stylesheet/book.css'
+import './stylesheet/bookinfo.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminPage from "./pages/AdminPage";

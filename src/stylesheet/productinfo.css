@@ -9,7 +9,7 @@
 
 
   color: black;
-  font-size: 45px;
+  font-size: 40px;
   font-weight: 700;
 }
 .Productinfo_price {
@@ -41,17 +41,17 @@
 }
 .textLMD {
   color: #505050;
-  font-size: 14px;
+  font-size: 30px;
   text-transform: uppercase;
   font-weight: 700;
   line-height: 20px;
-  box-shadow: rgba(240, 46, 120, 0.4) 0px 5px, rgba(231, 44, 131, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
-  
+  padding-top: 24px;
 }
 .textDT{
   color: black;
-  margin-top: 50px;
+  margin-top: 25px;
   font-size: 20px;
+  padding: 2px 14px;
 }
 .productinfo_thongtin{
   /* background-color: white; */
@@ -192,4 +192,7 @@ td.text-center {
 
 td.text-right {
   text-align: right;
+}
+.table-body{
+  border-radius: 15px;
 }
