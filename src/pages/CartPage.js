@@ -98,9 +98,11 @@ function CartPage() {
     }
   };
   //payment
+  let doi= Math.round((totalAmount/23)*100)/100;
+  // let doi= (totalAmount/23).toFixed(2);
   const product = {
     description: "Thanh toan",
-    price: Number(totalAmount),
+    price: doi,
   };
   console.log(product);
   return (

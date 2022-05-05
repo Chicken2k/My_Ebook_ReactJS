@@ -53,7 +53,7 @@ function Footer() {
                 <p>MyEbook</p>
             </div>
         </div>
-        <Chat/>
+       
     </div>
   );
 }
