@@ -6,6 +6,7 @@ import Layout from "../components/Layout";
 import { addDoc, collection } from "firebase/firestore";
 import fireDB from "../fireConfig";
 import { toast } from "react-toastify";
+import PaypalCheckoutButton from "../components/PaypalCheckoutButton";
 
 function CartPage() {
   //useSelector : selector co the dung nhiu noi, nhiu component khac nhau
@@ -15,9 +16,11 @@ function CartPage() {
   // dispath di duoc action len redux-store
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
-
+  const [showPay, setShowPay] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleClosePay = () => setShowPay(false);
+  const handleShowPay = () => setShowPay(true);
 
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -27,11 +30,11 @@ function CartPage() {
   useEffect(() => {
     let temp = 0;
     cartItems.forEach((cartItems) => {
-      temp = temp + (Number(cartItems.price)*1000);
+      temp = temp + Number(cartItems.price) * 1000;
     });
-  
-    setTotalAmount(temp.toLocaleString('vi-VN'));
-    console.log(temp)
+
+    setTotalAmount(temp.toLocaleString("vi-VN"));
+    console.log(temp);
   }, [cartItems]);
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -42,7 +45,7 @@ function CartPage() {
   const deleteFromCart = (product) => {
     dispatch({ type: "DELETE_FROM_CART", payload: product });
   };
-  
+
   // Order
   const placeOrder = async () => {
     const addressInfo = {
@@ -52,7 +55,6 @@ function CartPage() {
       phoneNumber,
     };
 
-    console.log(addressInfo);
     const orderInfo = {
       cartItems,
       addressInfo,
@@ -70,6 +72,37 @@ function CartPage() {
       toast.error("Order failed");
     }
   };
+  //payment
+  const placePay = async () => {
+    const addressInfo = {
+      name,
+      address,
+      phoneNumber,
+    };
+
+    const PayInfo = {
+      cartItems,
+      addressInfo,
+      email: JSON.parse(localStorage.getItem("currentUser")).user.email,
+      userid: JSON.parse(localStorage.getItem("currentUser")).user.uid,
+    };
+    try {
+      setLoading(true);
+      const result = await addDoc(collection(fireDB, "payment"), PayInfo);
+      setLoading(false);
+      toast.success("payment placed successfully");
+      handleClosePay();
+    } catch (error) {
+      setLoading(false);
+      toast.error("payment failed");
+    }
+  };
+  //payment
+  const product = {
+    description: "Thanh toan",
+    price: Number(totalAmount),
+  };
+  console.log(product);
   return (
     <Layout loading={loading}>
       <table className="table mt-3">
@@ -107,6 +140,7 @@ function CartPage() {
       </div>
       <div className="d-flex justify-content-end mt-3">
         <button onClick={handleShow}>Đặt Hàng </button>
+        <button onClick={handleShowPay}>Thanh toán </button>
       </div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -162,6 +196,65 @@ function CartPage() {
         <Modal.Footer>
           <button onClick={handleClose}>Close</button>
           <button onClick={placeOrder}>ORDER</button>
+        </Modal.Footer>
+      </Modal>
+      <Modal show={showPay} onHide={handleClosePay}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add your address</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {" "}
+          <div className="register-form">
+            <h2>Register</h2>
+            <hr />
+            <input
+              type="text"
+              className="form-control"
+              placeholder="name"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
+            <textarea
+              className="form-control"
+              rows={3}
+              type="text"
+              className="form-control"
+              placeholder="address"
+              value={address}
+              onChange={(e) => {
+                setAddress(e.target.value);
+              }}
+            />
+            {/* <input
+              className="form-control"
+              placeholder="pincode"
+              type="number"
+              value={pincode}
+              onChange={(e) => {
+                setPincode(e.target.value);
+              }}
+            /> */}
+            <input
+              type="number"
+              className="form-control"
+              placeholder="phone number"
+              value={phoneNumber}
+              onChange={(e) => {
+                setPhoneNumber(e.target.value);
+              }}
+            />
+
+            <hr />
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <button onClick={handleClosePay}>Close</button>
+
+          <PaypalCheckoutButton  onClick={placePay} product={product}>
+
+          </PaypalCheckoutButton>
         </Modal.Footer>
       </Modal>
     </Layout>
