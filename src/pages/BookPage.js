@@ -9,7 +9,9 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FaStar, FaStarHalf } from "react-icons/fa";
-import '../stylesheet/book.css'
+import "../stylesheet/book.css";
+import ReactPaginate from "react-paginate";
+const PER_PAGE = 9;
 function Homepage() {
   const [books, setBooks] = useState([]);
   //useSelector : selector co the dung nhiu noi, nhiu component khac nhau
@@ -45,18 +47,35 @@ function Homepage() {
       setLoading(false);
     }
   }
- 
-  
+
+  //pagination
+  const [currentPage, setcurrentPage] = useState(0);
+
+  function handlePageClick({ selected: selectedPage }) {
+    console.log("selectedPage", selectedPage);
+    setcurrentPage(selectedPage);
+  }
+  //0,10,20,30,...
+  const offset = currentPage * PER_PAGE;
+  //console.log("offset",offset)
+
+  //total pages: 500
+  const pageCount = Math.ceil(books.length / PER_PAGE);
 
   return (
     <Layout loading={loading}>
-    
       {/* view ra ngoai */}
       <div className="container book">
         <div className="slogan">
           <h1>Thư viện Ebook Miễn Phí</h1>
-          <h3>MyEbook được xây dựng nhằm chia sẽ sách miễn phí , lan truyền kiến thức rộng rãi đến mọi người </h3>
-          <h3>Nếu bạn có điều kiện ,Hãy mua sách giấy để ủng hộ Tác giả và nhà xuất bản</h3>
+          <h3>
+            MyEbook được xây dựng nhằm chia sẽ sách miễn phí , lan truyền kiến
+            thức rộng rãi đến mọi người{" "}
+          </h3>
+          <h3>
+            Nếu bạn có điều kiện ,Hãy mua sách giấy để ủng hộ Tác giả và nhà
+            xuất bản
+          </h3>
         </div>
         {/* Sap xep */}
         <div className="d-flex w-50 align-items-center my-3 justify-content-center">
@@ -86,6 +105,7 @@ function Homepage() {
         <div className="row body_cart">
           {/* Sap xep */}
           {books
+            .slice(offset, offset + PER_PAGE)
             .filter((obj) => obj.name.toLowerCase().includes(searchKey))
             .filter((obj) => obj.category.toLowerCase().includes(filterType))
             .map((book) => {
@@ -112,12 +132,9 @@ function Homepage() {
                         <span className="card__rate">4.6</span>
                         <span className="card__total">(11.597)</span>
                       </div>
-
                     </div>
                     <div className="product-actions">
-                      
                       <div className="d-flex">
-                       
                         <button
                           className="button--red"
                           onClick={() => {
@@ -134,9 +151,18 @@ function Homepage() {
               );
             })}
         </div>
+        <ReactPaginate
+          previousLabel={"< previous"}
+          nextLabel={"next >"}
+          pageCount={pageCount}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination"}
+          previousLinkClassName={"pagination__link"}
+          nextLinkClassName={"pagination__link"}
+          disabledClassName={"pagination__link--disabled"}
+          activeClassName={"pagination__link--active"}
+        />
       </div>
-  
-    
       ;
     </Layout>
   );

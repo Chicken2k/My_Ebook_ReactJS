@@ -18,6 +18,9 @@ import imgs3 from "../img/s3.jpg";
 import imgs4 from "../img/s4.jpg";
 import imgs5 from "../img/s5.jpg";
 import imgs6 from "../img/s6.jpg";
+import ReactPaginate from "react-paginate";
+
+const PER_PAGE = 9;
 function Homepage() {
   const [products, setProducts] = useState([]);
   //useSelector : selector co the dung nhiu noi, nhiu component khac nhau
@@ -63,7 +66,19 @@ function Homepage() {
   const addToCart = (product) => {
     dispatch({ type: "ADD_TO_CART", payload: product });
   };
+  //pagination
+  const [currentPage, setcurrentPage] = useState(0);
 
+  function handlePageClick({ selected: selectedPage }) {
+    console.log("selectedPage", selectedPage);
+    setcurrentPage(selectedPage);
+  }
+  //0,10,20,30,...
+  const offset = currentPage * PER_PAGE;
+  //console.log("offset",offset)
+
+  //total pages: 500
+  const pageCount = Math.ceil(products.length / PER_PAGE);
   return (
     <Layout loading={loading}>
       {/* COVER */}
@@ -144,8 +159,10 @@ function Homepage() {
         <div className="row">
           {/* Sap xep */}
           {products
+            .slice(offset, offset + PER_PAGE)
             .filter((obj) => obj.name.toLowerCase().includes(searchKey))
             .filter((obj) => obj.category.toLowerCase().includes(filterType))
+
             .map((product) => {
               return (
                 <div className="cart col-md-3 body_cart">
@@ -197,6 +214,17 @@ function Homepage() {
               );
             })}
         </div>
+        <ReactPaginate
+          previousLabel={"< previous"}
+          nextLabel={"next >"}
+          pageCount={pageCount}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination"}
+          previousLinkClassName={"pagination__link"}
+          nextLinkClassName={"pagination__link"}
+          disabledClassName={"pagination__link--disabled"}
+          activeClassName={"pagination__link--active"}
+        />
       </div>
       <div className="banner">
         <div className="container">

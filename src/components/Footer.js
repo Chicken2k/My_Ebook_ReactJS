@@ -53,7 +53,6 @@ function Footer() {
                 <p>MyEbook</p>
             </div>
         </div>
-       
     </div>
   );
 }
