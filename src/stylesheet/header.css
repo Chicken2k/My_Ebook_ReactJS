@@ -403,9 +403,7 @@
                 </div> */
                 
  /* pagination */
- .App{
-  text-align: center;
-}
+
 .pagination{
   display: flex;
   justify-content: center;

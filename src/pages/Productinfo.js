@@ -83,7 +83,7 @@ function ProductInfo() {
           <hr />
           <div className="productinfo_thongtin body_cart">
             <div className="container">
-              <h3 className="textLMD  " >Thông tin chi tiết</h3>
+              <h5 className="textLMD  ">Thông tin chi tiết</h5>
               <table className="table-fill textDT ">
                 <tbody className="table-hover table-body">
                   <tr>
@@ -114,13 +114,147 @@ function ProductInfo() {
               </table>
             </div>
           </div>
-          
+
           <div className="body_cart">
-          <p className="textLMD  ">Mô tả sản phẩm</p>
-          <p className="textDT">{product.description}</p>
-          <div className="d-flex justify-content-end my-3"></div>
+            <h5 className="textLMD mtsp">Mô tả sản phẩm</h5>
+            <p className="textDT">{product.description}</p>
+            <div className="d-flex justify-content-end my-3"></div>
           </div>
-         
+        </div>
+        {/* cmt */}
+        <div className="comment-thread">
+          <div className="textLMD">
+            <h5>HỎI , ĐÁP VỀ SẢN PHẨM</h5>
+          </div>
+          <hr />
+          <details open className="comment" id="comment-1">
+            <a href="#comment-1" className="comment-border-link">
+              <span className="sr-only">Jump to comment-1</span>
+            </a>
+
+            <summary>
+              <div className="comment-heading">
+                <div className="comment-info">
+                  <a href="#" className="comment-author">
+                    Prue Nguyễn
+                  </a>
+                  <p className="m-0"> &bull; 4 days ago</p>
+                </div>
+              </div>
+            </summary>
+
+            <div className="comment-body">
+              <p>
+                Sách lúc nhận hình thức rất ổn, không cong vênh xước gãy, đơn
+                hàng này mình hài lòng 5/5 với Tiki. Về phần nội dung, mình đọc
+                liên tục 4 tiếng, nửa đầu vừa vui vừa giận, đôi khi tức tối
+                nhưng lại dịu ngay bởi những hành động ấm áp của cậu bé dành cho
+                những người thương yêu. Nửa sau tan vỡ, dằn xé, tiếc nuối, xót
+                xa, phẫn nộ...đủ cả. Một cuốn sách day dứt và khiến người ta
+                hoài niệm, về tuổi thơbcủa mình, và thật sự nuối tiếc,
+              </p>
+              <button
+                type="button"
+                data-toggle="reply-form"
+                data-target="comment-1-reply-form"
+              >
+                Reply
+              </button>
+              <button type="button">Flag</button>
+
+              <form
+                method="POST"
+                className="reply-form d-none"
+                id="comment-1-reply-form"
+              >
+                <textarea placeholder="Reply to comment" rows="4"></textarea>
+                <button type="submit">Submit</button>
+                <button
+                  type="button"
+                  data-toggle="reply-form"
+                  data-target="comment-1-reply-form"
+                >
+                  Cancel
+                </button>
+              </form>
+            </div>
+
+            <div className="replies">
+              <details open className="comment" id="comment-2">
+                <a href="#comment-2" className="comment-border-link">
+                  <span className="sr-only">Jump to comment-2</span>
+                </a>
+                <summary>
+                  <div className="comment-heading">
+                    <div className="comment-info">
+                      <a href="#" className="comment-author">
+                        Ngo Van Hanh
+                      </a>
+                      <p className="m-0"> &bull; 3 days ago</p>
+                    </div>
+                  </div>
+                </summary>
+
+                <div className="comment-body">
+                  <p>Sách hay</p>
+                  <button
+                    type="button"
+                    data-toggle="reply-form"
+                    data-target="comment-2-reply-form"
+                  >
+                    Reply
+                  </button>
+                  <button type="button">Flag</button>
+
+                  <form
+                    method="POST"
+                    className="reply-form d-none"
+                    id="comment-2-reply-form"
+                  >
+                    <textarea
+                      placeholder="Reply to comment"
+                      rows="4"
+                    ></textarea>
+                    <button type="submit">Submit</button>
+                    <button
+                      type="button"
+                      data-toggle="reply-form"
+                      data-target="comment-2-reply-form"
+                    >
+                      Cancel
+                    </button>
+                  </form>
+                </div>
+              </details>
+
+              <a href="#load-more">Load more replies</a>
+            </div>
+          </details>
+
+          <div>
+            <textarea rows="3" cols="145" name="comment">
+              Hãy đặt câu hỏi liên quan đến sản phẩm
+            </textarea>
+
+            <form action="/action_page.php" id="usrform" >
+            <div className="text_cmt"> 
+            <input   name="usrname" placeholder="Họ và tên" />
+            <input className="text_cmt"  name="usrname" placeholder="Email của bạn" />
+            </div>
+          
+            
+            </form>
+            <div className="col-md-4 submit_cmt " >
+              <div>
+                <a className="button-green button-block add-comment">
+                  <span className="group-icon">
+                    <i className="fa fa-send-o"></i>
+                  </span>{" "}
+                  <span className="group-title">Xác nhận</span>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Layout>

@@ -1,10 +1,12 @@
-.productinfo{
+.productinfo {
   background-color: #eeeeee;
 }
-.card_products_img img{
+
+.card_products_img img {
   height: 400px;
   width: 400px;
 }
+
 .textProducts {
 
 
@@ -12,6 +14,7 @@
   font-size: 40px;
   font-weight: 700;
 }
+
 .Productinfo_price {
   background-color: #fafafa;
   color: #000;
@@ -19,64 +22,79 @@
   flex-direction: column;
   padding: 15px 20px;
 }
-.Productinfo_price p{
+
+.Productinfo_price p {
   color: #ec5252;
   font-weight: 500;
   line-height: 36px;
   font-size: 30px;
-  
+
 }
 
 
-.card_products_name .iStar{
+.card_products_name .iStar {
   color: #F4C150;
   font-size: 20px;
   font-weight: 900;
 }
-.card_products .button--red{
+
+.card_products .button--red {
   margin-top: 20px;
 }
-#product-actions-gia{
+
+#product-actions-gia {
   color: #ec5252;
 }
+
 .textLMD {
   color: #505050;
-  font-size: 30px;
+  font-size: 1.25rem;
   text-transform: uppercase;
-  font-weight: 700;
-  line-height: 20px;
   padding-top: 24px;
+
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+
 }
-.textDT{
+
+.textDT {
   color: black;
   margin-top: 25px;
-  font-size: 20px;
+
   padding: 2px 14px;
 }
-.productinfo_thongtin{
-  /* background-color: white; */
-  
+
+.mtsp {
+  padding-left: 12px;
 }
- /* // table */
- 
- @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
+.productinfo_thongtin {
+  /* background-color: white; */
+
+}
+
+/* // table */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
 
 div.table-title {
-   display: block;
+  display: block;
   margin: auto;
   max-width: 600px;
-  padding:5px;
+  padding: 5px;
   width: 100%;
 }
 
 .table-title h3 {
-   color: #fafafa;
-   font-size: 30px;
-   font-weight: 400;
-   font-style:normal;
-   font-family: "Roboto", helvetica, arial, sans-serif;
-   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
-   text-transform:uppercase;
+  color: #fafafa;
+  font-size: 30px;
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Roboto", helvetica, arial, sans-serif;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
 }
 
 
@@ -84,84 +102,85 @@ div.table-title {
 
 .table-fill {
   background: white;
-  border-radius:3px;
+  border-radius: 3px;
   border-collapse: collapse;
   height: 320px;
   max-width: 600px;
-  padding:5px;
+  padding: 5px;
   width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   animation: float 5s infinite;
 }
- 
+
 th {
-  color:#D5DDE5;;
-  background:#1b1e24;
-  border-bottom:4px solid #9ea7af;
+  color: #D5DDE5;
+  ;
+  background: #1b1e24;
+  border-bottom: 4px solid #9ea7af;
   border-right: 1px solid #343a45;
-  font-size:23px;
+  font-size: 23px;
   font-weight: 100;
-  padding:24px;
-  text-align:left;
+  padding: 24px;
+  text-align: left;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  vertical-align:middle;
+  vertical-align: middle;
 }
 
 th:first-child {
-  border-top-left-radius:3px;
+  border-top-left-radius: 3px;
 }
- 
+
 th:last-child {
-  border-top-right-radius:3px;
-  border-right:none;
+  border-top-right-radius: 3px;
+  border-right: none;
 }
-  
+
 tr {
   border-top: 1px solid #C1C3D1;
   border-bottom-: 1px solid #C1C3D1;
-  color:#666B85;
-  font-size:16px;
-  font-weight:normal;
+  color: #666B85;
+  font-size: 16px;
+  font-weight: normal;
   text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
 }
- 
+
 tr:hover td {
-  background:#4E5066;
-  color:#FFFFFF;
+  background: #4E5066;
+  color: #FFFFFF;
   border-top: 1px solid #22262e;
 }
- 
+
 tr:first-child {
-  border-top:none;
+  border-top: none;
 }
 
 tr:last-child {
-  border-bottom:none;
+  border-bottom: none;
 }
- 
+
 tr:nth-child(odd) td {
-  background:#EBEBEB;
+  background: #EBEBEB;
 }
- 
+
 tr:nth-child(odd):hover td {
-  background:#4E5066;
+  background: #4E5066;
 }
 
 tr:last-child td:first-child {
-  border-bottom-left-radius:3px;
+  border-bottom-left-radius: 3px;
 }
- 
+
 tr:last-child td:last-child {
-  border-bottom-right-radius:3px;
+  border-bottom-right-radius: 3px;
 }
- 
+
 td {
-  background:#FFFFFF;
-  padding:12px;
-  text-align:left;
-  vertical-align:middle;
-  font-weight:300;
-  font-size:18px;
+  background: #FFFFFF;
+  padding: 12px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 15px;
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
   border-right: 1px solid #C1C3D1;
 }
@@ -193,6 +212,236 @@ td.text-center {
 td.text-right {
   text-align: right;
 }
-.table-body{
+
+.table-body {
   border-radius: 15px;
+}
+
+/* cmt */
+/* 
+    Body, button, comment-thread, and utilities
+
+    Notes:
+        - This section sets some basic styles. You can ignore this part and 
+        go directly to the comment styles.
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.85);
+  background-color: #f9f9f9;
+
+}
+
+button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  font-size: 14px;
+  padding: 4px 8px;
+  color: rgba(0, 0, 0, 0.85);
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+button:hover,
+button:focus,
+button:active {
+  cursor: pointer;
+  background-color: #ecf0f1;
+}
+
+.comment-thread {
+  width: 100%;
+  max-width: 100%;
+  /* margin: auto; */
+  padding: 0 30px;
+  padding-bottom:30px ;
+  margin-top: 30px;
+  margin-bottom: 80px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  /* Removes margin collapse */
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Comment */
+
+.comment {
+  position: relative;
+  margin: 20px auto;
+}
+
+.comment-heading {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  font-size: 14px;
+}
+
+.comment-voting {
+  width: 20px;
+  height: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.comment-voting button {
+  display: block;
+  width: 100%;
+  height: 50%;
+  padding: 0;
+  border: 0;
+  font-size: 10px;
+}
+
+.comment-info {
+  color: rgba(0, 0, 0, 0.5);
+  margin-left: 10px;
+}
+
+.comment-author {
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.comment-author:hover {
+  text-decoration: underline;
+}
+
+.replies {
+  margin-left: 20px;
+}
+
+/* Adjustments for the comment border links */
+
+.comment-border-link {
+  display: block;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 12px;
+  height: calc(100% - 50px);
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  background-color: rgba(0, 0, 0, 0.1);
+  background-clip: padding-box;
+}
+
+.comment-border-link:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.comment-body {
+  padding: 0 20px;
+  padding-left: 28px;
+}
+
+.replies {
+  margin-left: 28px;
+}
+
+/* Adjustments for toggleable comments */
+
+details.comment summary {
+  position: relative;
+  list-style: none;
+  cursor: pointer;
+}
+
+details.comment summary::-webkit-details-marker {
+  display: none;
+}
+
+details.comment:not([open]) .comment-heading {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.comment-heading::after {
+  display: inline-block;
+  position: absolute;
+  right: 5px;
+  align-self: center;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+details.comment[open] .comment-heading::after {
+  content: "Click to hide";
+}
+
+details.comment:not([open]) .comment-heading::after {
+  content: "Click to show";
+}
+
+/* Adjustment for Internet Explorer */
+
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+
+  /* Resets cursor, and removes prompt text on Internet Explorer */
+  .comment-heading {
+    cursor: default;
+  }
+
+  details.comment[open] .comment-heading::after,
+  details.comment:not([open]) .comment-heading::after {
+    content: " ";
+  }
+}
+
+/* Styling the reply to comment form */
+
+.reply-form textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.d-none {
+  display: none;
+}
+
+.submit_cmt {
+padding: 10px 0px;
+
+}
+.text_cmt{
+  margin-right: 10px;
+}
+.button-green .group-title {
+  background: #09c500;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  color: #fff;
+  position: relative;
+  height: 36px;
+ 
+  display: inline-block;
+  font-weight: 700;
+  -webkit-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
+  
 }

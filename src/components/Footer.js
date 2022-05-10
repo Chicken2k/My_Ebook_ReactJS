@@ -48,7 +48,7 @@ function Footer() {
                     </div>
                 </div>
             </div>
-            <hr />
+         
             <div className="footer__copyright">
                 <p>MyEbook</p>
             </div>

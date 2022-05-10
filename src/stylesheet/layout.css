@@ -57,6 +57,7 @@ a{
 }
 input,select {
   height: 35px ;
+  margin-right: 10px;
 }
 #uncontrolled-tab-example-tab-products{
   color: black ;
