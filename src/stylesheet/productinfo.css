@@ -2,10 +2,10 @@
   background-color: #eeeeee;
 }
 
-.card_products_img img {
+/* .card_products_img img {
   height: 400px;
   width: 400px;
-}
+} */
 
 .textProducts {
 
@@ -180,7 +180,7 @@ td {
   text-align: left;
   vertical-align: middle;
   font-weight: 300;
-  font-size: 15px;
+  font-size: 18px;
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
   border-right: 1px solid #C1C3D1;
 }

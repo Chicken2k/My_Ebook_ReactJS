@@ -110,7 +110,7 @@ function Homepage() {
             .filter((obj) => obj.category.toLowerCase().includes(filterType))
             .map((book) => {
               return (
-                <div className="cart col-md-3">
+                <div className="cart col-12 col-sm-6 col-md-4 col-lg-3">
                   <div className="m-2 p-1 product position-relative">
                     <div className="product-content">
                       <div className="text-center">

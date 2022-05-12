@@ -44,14 +44,14 @@ function ProductInfo() {
     <Layout loading={loading}>
       <div className="container productinfo">
         <div className="row card_products justify-content-center">
-          <div className="col-4 ">
+          <div className="col-7 col-sm-8 col-md-8 col-lg-5 ">
             {product && (
               <div className="card_products_img body_cart">
                 <img src={product.imageURL} className="product-info-img" />
               </div>
             )}
           </div>
-          <div className="card_products_name body_cart col-8">
+          <div className="card_products_name body_cart col-5 col-sm-4 col-md-4 col-lg-7 ">
             <p>
               <b className="textProducts">{product.name}</b>
             </p>
@@ -145,13 +145,13 @@ function ProductInfo() {
 
             <div className="comment-body">
               <p>
-                Sách lúc nhận hình thức rất ổn, không cong vênh xước gãy, đơn
-                hàng này mình hài lòng 5/5 với Tiki. Về phần nội dung, mình đọc
-                liên tục 4 tiếng, nửa đầu vừa vui vừa giận, đôi khi tức tối
-                nhưng lại dịu ngay bởi những hành động ấm áp của cậu bé dành cho
-                những người thương yêu. Nửa sau tan vỡ, dằn xé, tiếc nuối, xót
-                xa, phẫn nộ...đủ cả. Một cuốn sách day dứt và khiến người ta
-                hoài niệm, về tuổi thơbcủa mình, và thật sự nuối tiếc,
+                Sách lúc nhận hình thức rất ổn, không cong vênh xước gãy. Về
+                phần nội dung, mình đọc liên tục 4 tiếng, nửa đầu vừa vui vừa
+                giận, đôi khi tức tối nhưng lại dịu ngay bởi những hành động ấm
+                áp của cậu bé dành cho những người thương yêu. Nửa sau tan vỡ,
+                dằn xé, tiếc nuối, xót xa, phẫn nộ...đủ cả. Một cuốn sách day
+                dứt và khiến người ta hoài niệm, về tuổi thơbcủa mình, và thật
+                sự nuối tiếc,
               </p>
               <button
                 type="button"
@@ -231,20 +231,25 @@ function ProductInfo() {
             </div>
           </details>
 
-          <div>
-            <textarea rows="3" cols="145" name="comment">
-              Hãy đặt câu hỏi liên quan đến sản phẩm
-            </textarea>
-
-            <form action="/action_page.php" id="usrform" >
-            <div className="text_cmt"> 
-            <input   name="usrname" placeholder="Họ và tên" />
-            <input className="text_cmt"  name="usrname" placeholder="Email của bạn" />
+          <div className="row">
+            <div >
+              {" "}
+              <textarea className="col-12" rows="3" name="comment">
+                Hãy đặt câu hỏi liên quan đến sản phẩm
+              </textarea>
             </div>
-          
-            
+
+            <form action="/action_page.php" id="usrform">
+              <div className="text_cmt">
+                <input name="usrname" placeholder="Họ và tên" />
+                <input
+                  className="text_cmt"
+                  name="usrname"
+                  placeholder="Email của bạn"
+                />
+              </div>
             </form>
-            <div className="col-md-4 submit_cmt " >
+            <div className="col-md-4 submit_cmt ">
               <div>
                 <a className="button-green button-block add-comment">
                   <span className="group-icon">

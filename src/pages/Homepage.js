@@ -18,6 +18,7 @@ import imgs3 from "../img/s3.jpg";
 import imgs4 from "../img/s4.jpg";
 import imgs5 from "../img/s5.jpg";
 import imgs6 from "../img/s6.jpg";
+import imgs7 from "../img/avata.png";
 import ReactPaginate from "react-paginate";
 
 const PER_PAGE = 9;
@@ -93,7 +94,7 @@ function Homepage() {
       <div className="intro">
         <div className="intro__content">
           <div className="row">
-            <div className="col-4">
+            <div className="col-4 ">
               <div className="intro__items">
                 <div className="intro__icon">
                   <i className="fa fa-bullseye"></i>
@@ -104,7 +105,7 @@ function Homepage() {
                 </div>
               </div>
             </div>
-            <div className="col-4">
+            <div className="col-4 ">
               <div className="intro__items">
                 <div className="intro__icon">
                   <i className="fa fa-spinner"></i>
@@ -115,7 +116,7 @@ function Homepage() {
                 </div>
               </div>
             </div>
-            <div className="col-4">
+            <div className="col-4 ">
               <div className="intro__items">
                 <div className="intro__icon">
                   <i className="fa fa-sync-alt"></i>
@@ -165,7 +166,7 @@ function Homepage() {
 
             .map((product) => {
               return (
-                <div className="cart col-md-3 body_cart">
+                <div className="cart col-12 col-sm-6 col-md-4 col-lg-3 body_cart">
                   <div className="m-2 p-1 product position-relative">
                     <div className="product-content">
                       <div className="text-center">
@@ -248,10 +249,10 @@ function Homepage() {
             <div className="card-body">
               <div className="card__top">
                 <div className="card__avatar">
-                  <img src={imgs1} alt="student 1" />
+                  <img src={imgs7} alt="student 1" />
                 </div>
                 <div>
-                  <p className="card__name">Oscar Javier</p>
+                  <p className="card__name">Nguyễn Ngân</p>
                   <div className="card__stars">
                     <span className="iStar">
                       <FaStar />
@@ -264,11 +265,10 @@ function Homepage() {
                 </div>
               </div>
               <p className="card-text">
-                I had a couple of months of experience trading without
-                consistent results. After taking this course I'm pretty
-                confident that I'll be a better trader and know better when to
-                enter a trade, how to put my stop loss and take profit, how many
-                lots to trade and much more.
+                Đầu tiên về dịch vụ, mình đánh giá 2 từ thôi: Tuyệt vời ? Đóng
+                gói cẩn thận, đặc biệt là trong quá trình vận chuyển hộp trông
+                có hơi méo mó một chút nhưng sách bên trong lại không hề hấn gì,
+                gáy sách cũng không bị hư, méo. Duyệt!
               </p>
             </div>
           </div>
@@ -278,10 +278,10 @@ function Homepage() {
             <div className="card-body">
               <div className="card__top">
                 <div className="card__avatar">
-                  <img src={imgs2} alt="student 1" />
+                  <img src={imgs7} alt="student 1" />
                 </div>
                 <div>
-                  <p className="card__name">Oscar Javier</p>
+                  <p className="card__name">Mỹ Anh</p>
                   <div className="card__stars">
                     <span className="iStar">
                       <FaStar />
@@ -294,11 +294,10 @@ function Homepage() {
                 </div>
               </div>
               <p className="card-text">
-                I had a couple of months of experience trading without
-                consistent results. After taking this course I'm pretty
-                confident that I'll be a better trader and know better when to
-                enter a trade, how to put my stop loss and take profit, how many
-                lots to trade and much more.
+                Theo mình thì cuốn sách này khá hay. Viết về cuốn sách này, tác
+                giả không tô vẽ không hoa mỹ nhưng diễn tả chân thật nội tâm
+                nhân vật chính. Cả bối cảnh trong truyện cũng thế, từng góc phố,
+                hiệu sách hay quán cafe cũng hiện rõ trong tâm trí người đọc.
               </p>
             </div>
           </div>
@@ -308,7 +307,7 @@ function Homepage() {
             <div className="card-body">
               <div className="card__top">
                 <div className="card__avatar">
-                  <img src={imgs3} alt="student 1" />
+                  <img src={imgs7} alt="student 1" />
                 </div>
                 <div>
                   <p className="card__name">Oscar Javier</p>
@@ -324,11 +323,10 @@ function Homepage() {
                 </div>
               </div>
               <p className="card-text">
-                I had a couple of months of experience trading without
-                consistent results. After taking this course I'm pretty
-                confident that I'll be a better trader and know better when to
-                enter a trade, how to put my stop loss and take profit, how many
-                lots to trade and much more.
+                Sách lúc mình nhận hàng là sách mới hoàn toàn, gáy sách chắc
+                chắn, giấy đẹp, chắc, và chữ dễ đọc. Với một đứa đã bỏ việc đọc
+                sách nhiều năm do cuộc sống bận rộn, quyển sách đầu tiên đọc lại
+                là quyển sách này giống như khơi dậy đam mê đọc sách .
               </p>
             </div>
           </div>
@@ -338,10 +336,10 @@ function Homepage() {
             <div className="card-body">
               <div className="card__top">
                 <div className="card__avatar">
-                  <img src={imgs4} alt="student 1" />
+                  <img src={imgs7} alt="student 1" />
                 </div>
                 <div>
-                  <p className="card__name">Oscar Javier</p>
+                  <p className="card__name">Minh Uyên</p>
                   <div className="card__stars">
                     <span className="iStar">
                       <FaStar />
@@ -354,11 +352,10 @@ function Homepage() {
                 </div>
               </div>
               <p className="card-text">
-                I had a couple of months of experience trading without
-                consistent results. After taking this course I'm pretty
-                confident that I'll be a better trader and know better when to
-                enter a trade, how to put my stop loss and take profit, how many
-                lots to trade and much more.
+                theo mình cảm nhận, đây là một cuốn sách khá là chill. đầu tiên
+                là nó kể về quá trình chữa lành của nhân vật chính, song lòng
+                ghép những sự kiện có thể xảy ra trong cuộc sống của mọi người
+                và cách chúng ta tổn thương sau những chuyện đó.
               </p>
             </div>
           </div>
@@ -368,10 +365,10 @@ function Homepage() {
             <div className="card-body">
               <div className="card__top">
                 <div className="card__avatar">
-                  <img src={imgs5} alt="student 1" />
+                  <img src={imgs7} alt="student 1" />
                 </div>
                 <div>
-                  <p className="card__name">Oscar Javier</p>
+                  <p className="card__name">Đỗ Ái Linh</p>
                   <div className="card__stars">
                     <span className="iStar">
                       <FaStar />
@@ -384,11 +381,11 @@ function Homepage() {
                 </div>
               </div>
               <p className="card-text">
-                I had a couple of months of experience trading without
-                consistent results. After taking this course I'm pretty
-                confident that I'll be a better trader and know better when to
-                enter a trade, how to put my stop loss and take profit, how many
-                lots to trade and much more.
+                Sách bọc cẩn thận, sách rất mới, đóng gói cẩn thận và giao hàng
+                nhanh. Câu chuyện truyền cho mình cảm hứng và động lực để đọc
+                nhiều hơn nữa để biết nhiều hơn những câu chuyện, hiểu được
+                nhiều cảm xúc. Một quyển sách đơn giản, nhẹ nhàng nhưng rất hay.
+                Chấm điểm sản phẩm: 9/10.
               </p>
             </div>
           </div>
@@ -398,10 +395,10 @@ function Homepage() {
             <div className="card-body">
               <div className="card__top">
                 <div className="card__avatar">
-                  <img src={imgs6} alt="student 1" />
+                  <img src={imgs7} alt="student 1" />
                 </div>
                 <div>
-                  <p className="card__name">Oscar Javier</p>
+                  <p className="card__name">Linh Khánh Trương Bùi</p>
                   <div className="card__stars">
                     <span className="iStar">
                       <FaStar />
@@ -414,11 +411,10 @@ function Homepage() {
                 </div>
               </div>
               <p className="card-text">
-                I had a couple of months of experience trading without
-                consistent results. After taking this course I'm pretty
-                confident that I'll be a better trader and know better when to
-                enter a trade, how to put my stop loss and take profit, how many
-                lots to trade and much more.
+                đây là một cuốn nhẹ nhàng nhưng khá thú vị với những bạn thích
+                sách, bối cảnh được lấy từ hiệu sách cổ nên tác giả miêu tả mình
+                cũng có thể tưởng tượng đc ra mùi sách cũ thơm ntn, rất phù hợp
+                để thư giãn và tìm được động lực làm việc
               </p>
             </div>
           </div>
