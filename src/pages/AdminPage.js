@@ -26,7 +26,7 @@ function AdminPage() {
     category: "",
   });
   const [books, setBooks] = useState([]);
- 
+
   const [book, setBook] = useState({
     name: "",
     pdfURL: "",
@@ -45,7 +45,7 @@ function AdminPage() {
   const handleCloseBook = () => setShowBook(false);
   const handleShowBook = () => setShowBook(true);
   const [orders, setOrders] = useState([]);
-
+  const [payment, setPayment] = useState([]);
   //product
   useEffect(() => {
     getData();
@@ -72,7 +72,7 @@ function AdminPage() {
   }
   //book
   useEffect(() => {
-  getBookData();
+    getBookData();
   }, []);
 
   async function getBookData() {
@@ -111,6 +111,27 @@ function AdminPage() {
       });
 
       setOrders(ordersArray);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  }
+  //payment
+  useEffect(() => {
+    getPaymentData();
+  }, []);
+
+  async function getPaymentData() {
+    try {
+      setLoading(true);
+      const result = await getDocs(collection(fireDB, "payment"));
+      const paymentArray = [];
+      result.forEach((doc) => {
+        paymentArray.push(doc.data());
+        setLoading(false);
+      });
+
+      setPayment(paymentArray);
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -491,7 +512,6 @@ function AdminPage() {
         </Tab>
         <Tab eventKey="orders" title="Đặt hàng ">
           {orders.map((order) => {
-      
             return (
               <table className="table mt-3 order">
                 <thead className="textAdmin">
@@ -518,6 +538,46 @@ function AdminPage() {
                           return (
                             <tr>
                               <td>{order.addressInfo[key]}</td>
+                            </tr>
+                          );
+                        })}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            );
+          })}
+        </Tab>
+        <Tab eventKey="payment" title="Sản phẩm thanh toán">
+          {payment.map((pay) => {
+            return (
+              <table className="table mt-3 order">
+                <thead className="textAdmin">
+                  <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+
+                    <th></th>
+                    <th>Thông tin người mua</th>
+                    <th> Trạng thái</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {pay.cartItems.map((item) => {
+                    return (
+                      <tr>
+                        <td>
+                          <img src={item.imageURL} height="80" width="80" />{" "}
+                        </td>
+                        <td>{item.name}</td>
+                        <td>{item.price}</td>
+                        <td>{item.address}</td>
+                        {Object.keys(pay.addressInfo).map((key) => {
+                          return (
+                            <tr>
+                              <td>{pay.addressInfo[key]}</td>
                             </tr>
                           );
                         })}

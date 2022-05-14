@@ -98,13 +98,13 @@ function CartPage() {
     }
   };
   //payment
-  let doi= Math.round((totalAmount/23)*100)/100;
+  let doi = Math.round((totalAmount / 23) * 100) / 100;
   // let doi= (totalAmount/23).toFixed(2);
   const product = {
     description: "Thanh toan",
     price: doi,
   };
-  console.log(product);
+
   return (
     <Layout loading={loading}>
       <table className="table mt-3">
@@ -146,12 +146,12 @@ function CartPage() {
       </div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add your address</Modal.Title>
+          <Modal.Title>Thông tin nhận hàng</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {" "}
           <div className="register-form">
-            <h2>Register</h2>
+            <h2>Đặt hàng</h2>
             <hr />
             <input
               type="text"
@@ -202,62 +202,13 @@ function CartPage() {
       </Modal>
       <Modal show={showPay} onHide={handleClosePay}>
         <Modal.Header closeButton>
-          <Modal.Title>Add your address</Modal.Title>
+          <Modal.Title>Thông tin nhận hàng</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {" "}
-          <div className="register-form">
-            <h2>Register</h2>
-            <hr />
-            <input
-              type="text"
-              className="form-control"
-              placeholder="name"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            />
-            <textarea
-              className="form-control"
-              rows={3}
-              type="text"
-              className="form-control"
-              placeholder="address"
-              value={address}
-              onChange={(e) => {
-                setAddress(e.target.value);
-              }}
-            />
-            {/* <input
-              className="form-control"
-              placeholder="pincode"
-              type="number"
-              value={pincode}
-              onChange={(e) => {
-                setPincode(e.target.value);
-              }}
-            /> */}
-            <input
-              type="number"
-              className="form-control"
-              placeholder="phone number"
-              value={phoneNumber}
-              onChange={(e) => {
-                setPhoneNumber(e.target.value);
-              }}
-            />
-
-            <hr />
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
+          <PaypalCheckoutButton  onClick={placePay} product={product}></PaypalCheckoutButton>
           <button onClick={handleClosePay}>Close</button>
-
-          <PaypalCheckoutButton  onClick={placePay} product={product}>
-
-          </PaypalCheckoutButton>
-        </Modal.Footer>
+        </Modal.Body>
       </Modal>
     </Layout>
   );

@@ -46,7 +46,7 @@ function RegisterPage() {
           </div>
           <div className="col-md-4 z1">
             <div className="register-form">
-              <h2>Register</h2>
+              <h2>Đăng ký</h2>
               <hr />
               <input
                 type="text"

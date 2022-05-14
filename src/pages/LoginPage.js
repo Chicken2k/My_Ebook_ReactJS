@@ -36,7 +36,7 @@ function LoginPage() {
         <div className="row justify-content-center">
           <div className="col-md-4 z1">
             <div className="login-form">
-              <h2>Login</h2>
+              <h2>Đăng nhập</h2>
               <hr />
               <input
                 type="text"
