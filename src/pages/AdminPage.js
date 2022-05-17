@@ -522,6 +522,7 @@ function AdminPage() {
 
                     <th></th>
                     <th>Thông tin người mua</th>
+                    <th> Trạng thái</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -542,6 +543,7 @@ function AdminPage() {
                           );
                         })}
                       </tr>
+                     
                     );
                   })}
                 </tbody>
