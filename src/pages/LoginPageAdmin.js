@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
+import checkUserIsAdmin from ".././Utils/index"
 
-function LoginPage() {
+function LoginPageAdmin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCPassword] = useState("");
@@ -19,9 +20,10 @@ function LoginPage() {
         password
       );
       console.log(result)
-      localStorage.setItem('currentUser',JSON.stringify(result))
+      localStorage.setItem('currentAdmin',JSON.stringify(result))
       setLoading(false);
       toast.success("Đặng Nhập thành công");
+    
       // sửa lại 
       window.location.href='/'
     } catch (error) {
@@ -60,7 +62,7 @@ function LoginPage() {
 
               <button className="login_btn my-3" onClick={login}>Đăng nhập</button>
               <hr />
-              <Link to="/register" >Đăng ký tại đây</Link>
+             
             </div>
           </div>
           <div className="col-md-5 z1">
@@ -78,4 +80,4 @@ function LoginPage() {
     </div>
   );
 }
-export default LoginPage;
+export default LoginPageAdmin;

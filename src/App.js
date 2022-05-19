@@ -23,6 +23,7 @@ import BookPage from "./pages/BookPage";
 import Bookinfo from "./pages/Bookinfo";
 import Chat from "./components/Chat";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import LoginPageAdmin from "./pages/LoginPageAdmin";
 
 function App() {
   return (
@@ -79,7 +80,6 @@ function App() {
                 </ProtectedRoutes>
               }
             />
-
             <Route
               path="/orders"
               exact
@@ -93,12 +93,13 @@ function App() {
               path="/admin"
               exact
               element={
-                <ProtectedRoutes>
+                <ProtectedRoutesAdmin>
                   <AdminPage />
-                </ProtectedRoutes>
+                </ProtectedRoutesAdmin>
               }
             />
             <Route path="/login" exact element={<LoginPage />} />
+            <Route path="/loginadmin" exact element={<LoginPageAdmin />} />
             <Route path="/register" exact element={<RegisterPage />} />
           </Routes>
         </BrowserRouter>
@@ -115,5 +116,13 @@ export const ProtectedRoutes = ({ children }) => {
     return children;
   } else {
     return <Navigate to="/login" />;
+  }
+};
+export const ProtectedRoutesAdmin = ({ children }) => {
+  if (localStorage.getItem("currentAdmin")) {
+    // console.log(children)
+    return children;
+  } else {
+    return <Navigate to="/loginadmin" />;
   }
 };

@@ -15,7 +15,9 @@ import { async } from "@firebase/util";
 import { toast } from "react-toastify";
 import { Tab, Tabs } from "react-bootstrap";
 import "../stylesheet/admin.css";
-
+//logout
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 function AdminPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -227,9 +229,28 @@ function AdminPage() {
       setLoading(false);
     }
   };
-
+  //logout
+  const { cartItems } = useSelector((state) => state.cartReducer);
+  const { user } = JSON.parse(localStorage.getItem("currentAdmin"));
+  const logout = () => {
+    localStorage.removeItem("currentAdmin");
+    window.location.reload();
+  };
   return (
     <div loading={loading}>
+      <div>
+        {" "}
+        <span>
+          <h1>Admin</h1>
+        </span>
+        <span>
+          {" "}
+          <Link className="nav-link" to="/" onClick={logout}>
+            <button className="button--red">Đăng Xuất</button>
+          </Link>
+        </span>
+      </div>
+
       <Tabs
         defaultActiveKey="products"
         id="uncontrolled-tab-example"
@@ -543,7 +564,6 @@ function AdminPage() {
                           );
                         })}
                       </tr>
-                     
                     );
                   })}
                 </tbody>
