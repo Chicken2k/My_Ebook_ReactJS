@@ -18,6 +18,7 @@ import "../stylesheet/admin.css";
 //logout
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { FaBars, FaCartPlus, FaUser } from "react-icons/fa";
 function AdminPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -238,18 +239,29 @@ function AdminPage() {
   };
   return (
     <div loading={loading}>
-      <div>
-        {" "}
-        <span>
-          <h1>Admin</h1>
-        </span>
-        <span>
-          {" "}
-          <Link className="nav-link" to="/" onClick={logout}>
-            <button className="button--red">Đăng Xuất</button>
+       
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container-fluid">
+          <Link className=" navbar-brand" >
+            Admin
           </Link>
-        </span>
-      </div>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              <li className=" text-navbar nav-item">
+                <Link className=" nav-link active" aria-current="page" >
+                <FaUser/> {user.email.substring(0, user.email.length - 10)}
+                </Link>
+              </li>
+              <li className=" text-navbar nav-item  ">
+                <Link className="nav-link" to="/" onClick={logout}>
+                <button className="button--red">Đăng Xuất</button>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
 
       <Tabs
         defaultActiveKey="products"
