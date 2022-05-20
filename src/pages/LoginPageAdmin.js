@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
-import checkUserIsAdmin from ".././Utils/index"
+
 
 function LoginPageAdmin() {
   const [email, setEmail] = useState("");

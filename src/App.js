@@ -99,7 +99,7 @@ function App() {
               }
             />
             <Route path="/login" exact element={<LoginPage />} />
-            <Route path="/loginadmin" exact element={<LoginPageAdmin />} />
+            <Route path="/loginadmin" exact element={<LoginPageAdmin />} /> 
             <Route path="/register" exact element={<RegisterPage />} />
           </Routes>
         </BrowserRouter>
