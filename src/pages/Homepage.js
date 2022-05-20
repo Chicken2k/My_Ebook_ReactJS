@@ -21,7 +21,7 @@ import imgs6 from "../img/s6.jpg";
 import imgs7 from "../img/avata.png";
 import ReactPaginate from "react-paginate";
 
-const PER_PAGE = 9;
+const PER_PAGE = 12;
 function Homepage() {
   const [products, setProducts] = useState([]);
   //useSelector : selector co the dung nhiu noi, nhiu component khac nhau

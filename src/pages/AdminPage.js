@@ -241,14 +241,14 @@ function AdminPage() {
     <div loading={loading}>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <Link className=" navbar-brand" to="/">
+          <Link className=" navbar-brand" to="/admin">
             Admin
           </Link>
 
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className=" text-navbar nav-item">
-                <Link className=" nav-link active" aria-current="page" to="/">
+                <Link className=" nav-link active" aria-current="page" to="/admin">
                   <FaUser /> {user.email.substring(0, user.email.length - 10)}
                 </Link>
               </li>
