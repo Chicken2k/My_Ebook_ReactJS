@@ -25,7 +25,7 @@ function LoginPageAdmin() {
       toast.success("Đặng Nhập thành công");
     
       // sửa lại 
-      window.location.href='/'
+      window.location.href='/admin'
     } catch (error) {
       console.log(error);
       toast.error("Đăng nhập thất bại");
