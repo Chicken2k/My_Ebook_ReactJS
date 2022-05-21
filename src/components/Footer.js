@@ -1,6 +1,7 @@
 import React from "react";
 import '../stylesheet/footer.css'
 import Chat from "./Chat";
+import Mess from "./Mess"
 function Footer() {
   return (
     <div>
@@ -48,12 +49,14 @@ function Footer() {
                     </div>
                 </div>
             </div>
-         
+            
             <div className="footer__copyright">
                 <p>MyEbook</p>
             </div>
+           <Mess/>
         </div>
     </div>
+    
   );
 }
 export default Footer;

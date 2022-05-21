@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import "../stylesheet/book.css";
 import ReactPaginate from "react-paginate";
-const PER_PAGE = 9;
+const PER_PAGE = 12;
 function Homepage() {
   const [books, setBooks] = useState([]);
   //useSelector : selector co the dung nhiu noi, nhiu component khac nhau
