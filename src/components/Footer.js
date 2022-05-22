@@ -40,9 +40,7 @@ function Footer() {
               </li>
             </ul>
           </div>
-        
         </div>
-
         <div className="footer__copyright">
           <p>MyEbook</p>
         </div>

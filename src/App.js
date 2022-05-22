@@ -24,7 +24,7 @@ import Bookinfo from "./pages/Bookinfo";
 import Chat from "./components/Chat";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import LoginPageAdmin from "./pages/LoginPageAdmin";
-
+import Admin2 from "./pages/Admin2";
 function App() {
   return (
     <PayPalScriptProvider
@@ -89,7 +89,7 @@ function App() {
                 </ProtectedRoutes>
               }
             />
-            <Route
+            {/* <Route
               path="/admin"
               exact
               element={
@@ -97,10 +97,11 @@ function App() {
                   <AdminPage />
                 </ProtectedRoutesAdmin>
               }
-            />
+            /> */}
             <Route path="/login" exact element={<LoginPage />} />
             <Route path="/loginadmin" exact element={<LoginPageAdmin />} /> 
             <Route path="/register" exact element={<RegisterPage />} />
+            <Route path="/admin" exact element={<Admin2 />} />
           </Routes>
         </BrowserRouter>
       </div>
@@ -118,11 +119,11 @@ export const ProtectedRoutes = ({ children }) => {
     return <Navigate to="/login" />;
   }
 };
-export const ProtectedRoutesAdmin = ({ children }) => {
-  if (localStorage.getItem("currentAdmin")) {
-    // console.log(children)
-    return children;
-  } else {
-    return <Navigate to="/loginadmin" />;
-  }
-};
+// export const ProtectedRoutesAdmin = ({ children }) => {
+//   if (localStorage.getItem("currentAdmin")) {
+//     // console.log(children)
+//     return children;
+//   } else {
+//     return <Navigate to="/loginadmin" />;
+//   }
+// };
