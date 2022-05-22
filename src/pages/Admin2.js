@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import LoginForm from "../components/LoginForm";
 
-
 import Layout from "../components/Layout";
 import {
   collection,
@@ -156,7 +155,7 @@ function Admin2() {
       await setDoc(doc(fireDB, "products", product.id), product);
       handleClose();
       toast.success("product updated successfully");
-      window.location.reload();
+     
     } catch (error) {
       toast.error("product updated failed");
       setLoading(false);
@@ -168,7 +167,7 @@ function Admin2() {
       await addDoc(collection(fireDB, "products"), product);
       handleClose();
       toast.success("product add successfully");
-      window.location.reload();
+    
     } catch (error) {
       toast.error("product add failed");
       setLoading(false);
@@ -200,7 +199,7 @@ function Admin2() {
       await setDoc(doc(fireDB, "books", book.id), book);
       handleCloseBook();
       toast.success("book updated successfully");
-      window.location.reload();
+     
     } catch (error) {
       toast.error("book updated failed");
       setLoading(false);
@@ -212,7 +211,7 @@ function Admin2() {
       await addDoc(collection(fireDB, "books"), book);
       handleCloseBook();
       toast.success("books add successfully");
-      window.location.reload();
+   
     } catch (error) {
       toast.error("books add failed");
       setLoading(false);
@@ -236,7 +235,7 @@ function Admin2() {
   };
   //logout
 
-//admin1
+  //admin1
   const adminUser = {
     email: "admin@gmail.com",
     password: "123456",
@@ -252,8 +251,8 @@ function Admin2() {
       setLoading(false);
       toast.success("Đặng Nhập thành công");
       setUser({
-      name:details.name,
-      email:details.email
+        name: details.name,
+        email: details.email,
       });
     } else {
       toast.error("Đăng nhập thất bại");
@@ -261,404 +260,414 @@ function Admin2() {
     }
   };
   const Logout = () => {
-    setUser({name:"",email:""})
+    setUser({ name: "", email: "" });
   };
   return (
     <div className="Admin2">
       {user.email != "" ? (
         <div loading={loading}>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
-          <Link className=" navbar-brand" to="/admin">
-            Admin
-          </Link>
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="container-fluid">
+              <Link className=" navbar-brand" to="/admin">
+                Admin
+              </Link>
 
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ms-auto">
-              <li className=" text-navbar nav-item">
-                <Link className=" nav-link active" aria-current="page" to="/admin">
-                  <FaUser /> {user.email.substring(0, user.email.length - 10)}
-                </Link>
-              </li>
+              <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav ms-auto">
+                  <li className=" text-navbar nav-item">
+                    <Link
+                      className=" nav-link active"
+                      aria-current="page"
+                      to="/admin"
+                    >
+                      <FaUser />{" "}
+                      {user.email.substring(0, user.email.length - 10)}
+                    </Link>
+                  </li>
 
-              <li className=" text-navbar nav-item  ">
-              <button onClick={Logout}>Logout</button>
-              </li>
-            </ul>
-          </div>
+                  <li className=" text-navbar nav-item  ">
+                    <button onClick={Logout}>Logout</button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+          <Tabs
+            defaultActiveKey="products"
+            id="uncontrolled-tab-example"
+            className="mb-3"
+          >
+            <Tab eventKey="products" title="Sản phẩm">
+              <div className="d-flex justify-content-between">
+                <h3>Products List</h3>
+                <button onClick={addHandler}> ADD PRODUCT</button>
+              </div>
+              <table className="table mt-3  ">
+                <thead className="textAdmin">
+                  <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.map((item) => {
+                    return (
+                      <tr>
+                        <td>
+                          <img src={item.imageURL} height="80" width="80" />{" "}
+                        </td>
+                        <td>{item.name}</td>
+                        <td>{item.category}</td>
+                        <td>{item.price}</td>
+                        <td>
+                          <FaTrash
+                            color="red"
+                            size={20}
+                            onClick={() => deleteProduct(item)}
+                          />
+                          <FaEdit
+                            onClick={() => editHandler(item)}
+                            color="blue"
+                            size={20}
+                          />
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                    {add === true ? "Add a product" : "Edit product"}
+                    {console.log(add)}
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  {" "}
+                  <div className="register-form">
+                    <input
+                      type="text"
+                      value={product.name}
+                      className="form-control"
+                      placeholder="name"
+                      onChange={(e) =>
+                        setProduct({ ...product, name: e.target.value })
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={product.imageURL}
+                      className="form-control"
+                      placeholder="img URL"
+                      onChange={(e) =>
+                        setProduct({ ...product, imageURL: e.target.value })
+                      }
+                    />
+                    <input
+                      type="number"
+                      value={product.price}
+                      className="form-control"
+                      placeholder="price"
+                      onChange={(e) =>
+                        setProduct({ ...product, price: e.target.value })
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={product.category}
+                      className="form-control"
+                      placeholder="category"
+                      onChange={(e) =>
+                        setProduct({ ...product, category: e.target.value })
+                      }
+                    />
+
+                    <div className="col-md-12">
+                      <label for="comments" className="form-label"></label>
+                      <textarea
+                        id="comments"
+                        className="form-control"
+                        rows={5}
+                        type="text"
+                        value={product.description}
+                        placeholder="description"
+                        onChange={(e) =>
+                          setProduct({
+                            ...product,
+                            description: e.target.value,
+                          })
+                        }
+                      ></textarea>
+                    </div>
+                    <input
+                      type="text"
+                      value={product.company}
+                      className="form-control"
+                      placeholder="Công ty phát hành"
+                      onChange={(e) =>
+                        setProduct({ ...product, company: e.target.value })
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={product.day}
+                      className="form-control"
+                      placeholder="Ngày xuất bản"
+                      onChange={(e) =>
+                        setProduct({ ...product, day: e.target.value })
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={product.version}
+                      className="form-control"
+                      placeholder="Phiên bản"
+                      onChange={(e) =>
+                        setProduct({ ...product, version: e.target.value })
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={product.paper}
+                      className="form-control"
+                      placeholder="Loại bìa"
+                      onChange={(e) =>
+                        setProduct({ ...product, paper: e.target.value })
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={product.numberPages}
+                      className="form-control"
+                      placeholder="Số trang"
+                      onChange={(e) =>
+                        setProduct({ ...product, numberPages: e.target.value })
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={product.publishing}
+                      className="form-control"
+                      placeholder="Nhà xuất bản"
+                      onChange={(e) =>
+                        setProduct({ ...product, publishing: e.target.value })
+                      }
+                    />
+
+                    <hr />
+                  </div>
+                </Modal.Body>
+                <Modal.Footer>
+                  <button>Close</button>
+                  {add ? (
+                    <button onClick={addProduct}>SAVE</button>
+                  ) : (
+                    <button onClick={updateProduct}>SAVE</button>
+                  )}
+                </Modal.Footer>
+              </Modal>
+            </Tab>
+            <Tab eventKey="books" title="Sách">
+              <div className="d-flex justify-content-between">
+                <h3>BOOK LIST</h3>
+                <button onClick={addHandlerBook}> ADD book</button>
+              </div>
+              <table className="table mt-3">
+                <thead className="textAdmin">
+                  <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {books.map((item) => {
+                    return (
+                      <tr>
+                        <td>
+                          <img src={item.imageURL} height="80" width="80" />{" "}
+                        </td>
+                        <td>{item.name}</td>
+                        <td>{item.category}</td>
+                        <td>
+                          <FaTrash
+                            color="red"
+                            size={20}
+                            onClick={() => deleteBook(item)}
+                          />
+                          <FaEdit
+                            onClick={() => editHandlerBook(item)}
+                            color="blue"
+                            size={20}
+                          />
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+              <Modal show={showBook} onHide={handleCloseBook}>
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                    {addBookPdf === true ? "Add a Book" : "Edit Book"}
+                    {console.log(addBookPdf)}
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  {" "}
+                  <div className="register-form">
+                    <input
+                      type="text"
+                      value={book.name}
+                      className="form-control"
+                      placeholder="name"
+                      onChange={(e) =>
+                        setBook({ ...book, name: e.target.value })
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={book.imageURL}
+                      className="form-control"
+                      placeholder="img URL"
+                      onChange={(e) =>
+                        setBook({ ...book, imageURL: e.target.value })
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={book.pdfURL}
+                      className="form-control"
+                      placeholder="pdfURL"
+                      onChange={(e) =>
+                        setBook({ ...book, pdfURL: e.target.value })
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={book.category}
+                      className="form-control"
+                      placeholder="category"
+                      onChange={(e) =>
+                        setBook({ ...book, category: e.target.value })
+                      }
+                    />
+                    <input
+                      type="text"
+                      value={book.description}
+                      className="form-control"
+                      placeholder="description"
+                      onChange={(e) =>
+                        setBook({ ...book, description: e.target.value })
+                      }
+                    />
+                    <hr />
+                  </div>
+                </Modal.Body>
+                <Modal.Footer>
+                  <button>Close</button>
+                  {addBookPdf ? (
+                    <button onClick={addBook}>SAVE</button>
+                  ) : (
+                    <button onClick={updateBook}>SAVE</button>
+                  )}
+                </Modal.Footer>
+              </Modal>
+            </Tab>
+            <Tab eventKey="orders" title="Đặt hàng ">
+              {orders.map((order) => {
+                return (
+                  <table className="table mt-3 order">
+                    <thead className="textAdmin">
+                      <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Price</th>
+
+                        <th></th>
+                        <th>Thông tin người mua</th>
+                        <th> Trạng thái</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {order.cartItems.map((item) => {
+                        return (
+                          <tr>
+                            <td>
+                              <img src={item.imageURL} height="80" width="80" />{" "}
+                            </td>
+                            <td>{item.name}</td>
+                            <td>{item.price}</td>
+                            <td>{item.address}</td>
+                            {Object.keys(order.addressInfo).map((key) => {
+                              return (
+                                <tr>
+                                  <td>{order.addressInfo[key]}</td>
+                                </tr>
+                              );
+                            })}
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                );
+              })}
+            </Tab>
+            <Tab eventKey="payment" title="Sản phẩm thanh toán">
+              {payment.map((pay) => {
+                return (
+                  <table className="table mt-3 order">
+                    <thead className="textAdmin">
+                      <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Price</th>
+
+                        <th></th>
+                        <th>Thông tin người mua</th>
+                        <th> Trạng thái</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {pay.cartItems.map((item) => {
+                        return (
+                          <tr>
+                            <td>
+                              <img src={item.imageURL} height="80" width="80" />{" "}
+                            </td>
+                            <td>{item.name}</td>
+                            <td>{item.price}</td>
+                            <td>{item.address}</td>
+                            {Object.keys(pay.addressInfo).map((key) => {
+                              return (
+                                <tr>
+                                  <td>{pay.addressInfo[key]}</td>
+                                </tr>
+                              );
+                            })}
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                );
+              })}
+            </Tab>
+            <Tab eventKey="contact" title="Người dùng" disabled></Tab>
+            <Tab eventKey="topbook" title="Sản phẩm bán chạy" disabled></Tab>
+            <Tab eventKey="cmt" title="Đánh giá người dùng " disabled></Tab>
+            <Tab eventKey="mg" title="quan li nguoi dung" disabled></Tab>
+          </Tabs>
         </div>
-      </nav>
-
-      <Tabs
-        defaultActiveKey="products"
-        id="uncontrolled-tab-example"
-        className="mb-3"
-      >
-        <Tab eventKey="products" title="Sản phẩm">
-          <div className="d-flex justify-content-between">
-            <h3>Products List</h3>
-            <button onClick={addHandler}> ADD PRODUCT</button>
-          </div>
-          <table className="table mt-3  ">
-            <thead className="textAdmin">
-              <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((item) => {
-                return (
-                  <tr>
-                    <td>
-                      <img src={item.imageURL} height="80" width="80" />{" "}
-                    </td>
-                    <td>{item.name}</td>
-                    <td>{item.category}</td>
-                    <td>{item.price}</td>
-                    <td>
-                      <FaTrash
-                        color="red"
-                        size={20}
-                        onClick={() => deleteProduct(item)}
-                      />
-                      <FaEdit
-                        onClick={() => editHandler(item)}
-                        color="blue"
-                        size={20}
-                      />
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>
-                {add === true ? "Add a product" : "Edit product"}
-                {console.log(add)}
-              </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              {" "}
-              <div className="register-form">
-                <input
-                  type="text"
-                  value={product.name}
-                  className="form-control"
-                  placeholder="name"
-                  onChange={(e) =>
-                    setProduct({ ...product, name: e.target.value })
-                  }
-                />
-                <input
-                  type="text"
-                  value={product.imageURL}
-                  className="form-control"
-                  placeholder="img URL"
-                  onChange={(e) =>
-                    setProduct({ ...product, imageURL: e.target.value })
-                  }
-                />
-                <input
-                  type="number"
-                  value={product.price}
-                  className="form-control"
-                  placeholder="price"
-                  onChange={(e) =>
-                    setProduct({ ...product, price: e.target.value })
-                  }
-                />
-                <input
-                  type="text"
-                  value={product.category}
-                  className="form-control"
-                  placeholder="category"
-                  onChange={(e) =>
-                    setProduct({ ...product, category: e.target.value })
-                  }
-                />
-
-                <div className="col-md-12">
-                  <label for="comments" className="form-label"></label>
-                  <textarea
-                    id="comments"
-                    className="form-control"
-                    rows={5}
-                    type="text"
-                    value={product.description}
-                    placeholder="description"
-                    onChange={(e) =>
-                      setProduct({ ...product, description: e.target.value })
-                    }
-                  ></textarea>
-                </div>
-                <input
-                  type="text"
-                  value={product.company}
-                  className="form-control"
-                  placeholder="Công ty phát hành"
-                  onChange={(e) =>
-                    setProduct({ ...product, company: e.target.value })
-                  }
-                />
-                <input
-                  type="text"
-                  value={product.day}
-                  className="form-control"
-                  placeholder="Ngày xuất bản"
-                  onChange={(e) =>
-                    setProduct({ ...product, day: e.target.value })
-                  }
-                />
-                <input
-                  type="text"
-                  value={product.version}
-                  className="form-control"
-                  placeholder="Phiên bản"
-                  onChange={(e) =>
-                    setProduct({ ...product, version: e.target.value })
-                  }
-                />
-                <input
-                  type="text"
-                  value={product.paper}
-                  className="form-control"
-                  placeholder="Loại bìa"
-                  onChange={(e) =>
-                    setProduct({ ...product, paper: e.target.value })
-                  }
-                />
-                <input
-                  type="text"
-                  value={product.numberPages}
-                  className="form-control"
-                  placeholder="Số trang"
-                  onChange={(e) =>
-                    setProduct({ ...product, numberPages: e.target.value })
-                  }
-                />
-                <input
-                  type="text"
-                  value={product.publishing}
-                  className="form-control"
-                  placeholder="Nhà xuất bản"
-                  onChange={(e) =>
-                    setProduct({ ...product, publishing: e.target.value })
-                  }
-                />
-
-                <hr />
-              </div>
-            </Modal.Body>
-            <Modal.Footer>
-              <button>Close</button>
-              {add ? (
-                <button onClick={addProduct}>SAVE</button>
-              ) : (
-                <button onClick={updateProduct}>SAVE</button>
-              )}
-            </Modal.Footer>
-          </Modal>
-        </Tab>
-        <Tab eventKey="books" title="Sách">
-          <div className="d-flex justify-content-between">
-            <h3>BOOK LIST</h3>
-            <button onClick={addHandlerBook}> ADD book</button>
-          </div>
-          <table className="table mt-3">
-            <thead className="textAdmin">
-              <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {books.map((item) => {
-                return (
-                  <tr>
-                    <td>
-                      <img src={item.imageURL} height="80" width="80" />{" "}
-                    </td>
-                    <td>{item.name}</td>
-                    <td>{item.category}</td>
-                    <td>
-                      <FaTrash
-                        color="red"
-                        size={20}
-                        onClick={() => deleteBook(item)}
-                      />
-                      <FaEdit
-                        onClick={() => editHandlerBook(item)}
-                        color="blue"
-                        size={20}
-                      />
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-          <Modal show={showBook} onHide={handleCloseBook}>
-            <Modal.Header closeButton>
-              <Modal.Title>
-                {addBookPdf === true ? "Add a Book" : "Edit Book"}
-                {console.log(addBookPdf)}
-              </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              {" "}
-              <div className="register-form">
-                <input
-                  type="text"
-                  value={book.name}
-                  className="form-control"
-                  placeholder="name"
-                  onChange={(e) => setBook({ ...book, name: e.target.value })}
-                />
-                <input
-                  type="text"
-                  value={book.imageURL}
-                  className="form-control"
-                  placeholder="img URL"
-                  onChange={(e) =>
-                    setBook({ ...book, imageURL: e.target.value })
-                  }
-                />
-                <input
-                  type="text"
-                  value={book.pdfURL}
-                  className="form-control"
-                  placeholder="pdfURL"
-                  onChange={(e) => setBook({ ...book, pdfURL: e.target.value })}
-                />
-                <input
-                  type="text"
-                  value={book.category}
-                  className="form-control"
-                  placeholder="category"
-                  onChange={(e) =>
-                    setBook({ ...book, category: e.target.value })
-                  }
-                />
-                <input
-                  type="text"
-                  value={book.description}
-                  className="form-control"
-                  placeholder="description"
-                  onChange={(e) =>
-                    setBook({ ...book, description: e.target.value })
-                  }
-                />
-                <hr />
-              </div>
-            </Modal.Body>
-            <Modal.Footer>
-              <button>Close</button>
-              {addBookPdf ? (
-                <button onClick={addBook}>SAVE</button>
-              ) : (
-                <button onClick={updateBook}>SAVE</button>
-              )}
-            </Modal.Footer>
-          </Modal>
-        </Tab>
-        <Tab eventKey="orders" title="Đặt hàng ">
-          {orders.map((order) => {
-            return (
-              <table className="table mt-3 order">
-                <thead className="textAdmin">
-                  <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Price</th>
-
-                    <th></th>
-                    <th>Thông tin người mua</th>
-                    <th> Trạng thái</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {order.cartItems.map((item) => {
-                    return (
-                      <tr>
-                        <td>
-                          <img src={item.imageURL} height="80" width="80" />{" "}
-                        </td>
-                        <td>{item.name}</td>
-                        <td>{item.price}</td>
-                        <td>{item.address}</td>
-                        {Object.keys(order.addressInfo).map((key) => {
-                          return (
-                            <tr>
-                              <td>{order.addressInfo[key]}</td>
-                            </tr>
-                          );
-                        })}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            );
-          })}
-        </Tab>
-        <Tab eventKey="payment" title="Sản phẩm thanh toán">
-          {payment.map((pay) => {
-            return (
-              <table className="table mt-3 order">
-                <thead className="textAdmin">
-                  <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Price</th>
-
-                    <th></th>
-                    <th>Thông tin người mua</th>
-                    <th> Trạng thái</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pay.cartItems.map((item) => {
-                    return (
-                      <tr>
-                        <td>
-                          <img src={item.imageURL} height="80" width="80" />{" "}
-                        </td>
-                        <td>{item.name}</td>
-                        <td>{item.price}</td>
-                        <td>{item.address}</td>
-                        {Object.keys(pay.addressInfo).map((key) => {
-                          return (
-                            <tr>
-                              <td>{pay.addressInfo[key]}</td>
-                            </tr>
-                          );
-                        })}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            );
-          })}
-        </Tab>
-        <Tab eventKey="contact" title="Người dùng" disabled></Tab>
-        <Tab eventKey="topbook" title="Sản phẩm bán chạy" disabled></Tab>
-        <Tab eventKey="cmt" title="Đánh giá người dùng " disabled></Tab>
-        <Tab eventKey="mg" title="quan li nguoi dung" disabled>
-         
-        </Tab>
-      </Tabs>
-    </div>
       ) : (
-        <LoginForm Login={Login} error={error}  to="/book" />
+        <LoginForm Login={Login} error={error} to="/book" />
       )}
     </div>
   );
